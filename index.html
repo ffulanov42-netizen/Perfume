@@ -1,0 +1,2576 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#FAF8F5" />
+  <title>СайфуЛлах парфюм — Брендовые флаконы и распив</title>
+  <meta name="description" content="Оригинальная брендовая парфюмерия, распив 10 / 30 / 50 мл и премиальные флаконы. Быстрая доставка по ЧР, Грозному и всей РФ." />
+
+  <!-- Google Fonts: Playfair Display (заголовки) и Inter (основной текст) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FAF8F5',
+            creamDark: '#F2EDE4',
+            graphite: '#18181B',
+            gold: '#A67C52',
+            goldLight: '#C5A079',
+            goldSoft: '#F5EFE6',
+            emeraldDark: '#064E3B',
+            emeraldHover: '#04392B',
+            borderWarm: '#E8E2D9'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+          },
+          boxShadow: {
+            card: '0 2px 14px -4px rgba(24, 24, 27, 0.06)',
+            cardHover: '0 10px 28px -8px rgba(24, 24, 27, 0.11)',
+            sticky: '0 -6px 24px -6px rgba(24, 24, 27, 0.14)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Плавный скролл и базовые настройки типографики */
+    html {
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #FAF8F5;
+      color: #18181B;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Скрытие полосы прокрутки в горизонтальных фильтрах */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Плавная анимация смены изображений на карточках */
+    .img-fade {
+      transition: opacity 0.28s ease, transform 0.35s ease;
+    }
+
+    /* Анимации выдвижной корзины и модального окна */
+    .drawer-panel {
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .backdrop-fade {
+      transition: opacity 0.25s ease;
+    }
+
+    /* Подсветка ошибки при валидации */
+    @keyframes shakeField {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+    .field-error-shake {
+      animation: shakeField 0.28s ease-in-out;
+    }
+
+    /* Аккуратный отступ под iPhone safe-area */
+    .pb-safe {
+      padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-graphite antialiased selection:bg-gold/20 selection:text-graphite">
+
+  <!-- ===================================================================== -->
+  <!-- 1. ЛИПКАЯ ШАПКА МАГАЗИНА                                              -->
+  <!-- ===================================================================== -->
+  <header id="site-header" class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b border-borderWarm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-[72px] flex items-center justify-between gap-2">
+      <!-- Логотип и название -->
+      <a href="#top" class="flex items-center gap-2.5 min-w-0 group">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emeraldDark text-cream flex items-center justify-center shrink-0 shadow-sm group-hover:bg-emeraldHover transition-colors">
+          <!-- Inline SVG: минималистичный флакон-эмблема -->
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="3" width="6" height="3" rx="0.8"></rect>
+            <path d="M10 6h4v2h-4z"></path>
+            <rect x="6" y="8" width="12" height="13" rx="2.5"></rect>
+            <path d="M9.5 13.5h5" stroke="#C5A079"></path>
+          </svg>
+        </div>
+        <div class="min-w-0">
+          <div id="header-shop-name" class="font-serif font-semibold text-base sm:text-xl leading-tight text-graphite truncate">
+            СайфуЛлах парфюм
+          </div>
+          <div class="text-[11px] sm:text-xs text-graphite/60 truncate">
+            Брендовые флаконы и распив
+          </div>
+        </div>
+      </a>
+
+      <!-- Правые кнопки: WhatsApp + Корзина -->
+      <div class="flex items-center gap-2 shrink-0">
+        <!-- Быстрая связь в WhatsApp -->
+        <a id="header-whatsapp-btn"
+           href="https://wa.me/79300719595"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl border border-borderWarm bg-white hover:border-emeraldDark/40 hover:bg-emeraldDark/[0.03] text-graphite text-xs sm:text-sm font-medium transition-all"
+           title="Написать в WhatsApp">
+          <svg class="w-4 h-4 text-emeraldDark shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.49 0 .14 5.34.14 11.91c0 2.1.55 4.15 1.59 5.96L0 24l6.3-1.65a11.9 11.9 0 0 0 5.76 1.47h.01c6.57 0 11.92-5.35 11.92-11.92 0-3.18-1.24-6.17-3.47-8.42ZM12.06 21.8h-.01a9.89 9.89 0 0 1-5.04-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.88 9.88 0 0 1-1.52-5.26c0-5.46 4.44-9.9 9.91-9.9 2.64 0 5.13 1.03 7 2.9a9.84 9.84 0 0 1 2.9 7c0 5.46-4.44 9.89-9.9 9.89Zm5.43-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.21 5.08 4.5.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+          </svg>
+          <span id="header-phone-text" class="hidden md:inline">+7 930 071-95-95</span>
+          <span class="md:hidden">Чат</span>
+        </a>
+
+        <!-- Кнопка Корзины со счётчиком и суммой -->
+        <button id="header-cart-btn"
+                type="button"
+                onclick="openCartDrawer()"
+                class="relative inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-emeraldDark hover:bg-emeraldHover text-white text-xs sm:text-sm font-medium shadow-sm transition-all active:scale-[0.98]"
+                aria-label="Открыть корзину">
+          <span class="relative flex items-center">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+              <path d="M3 6h18"></path>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span id="header-cart-count"
+                  class="hidden -top-2 -right-2.5 absolute min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-white text-[10px] font-bold flex items-center justify-center ring-2 ring-emeraldDark">
+              0
+            </span>
+          </span>
+          <span id="header-cart-total" class="font-semibold whitespace-nowrap">Корзина</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- 2. КОМПАКТНЫЙ ГЛАВНЫЙ БАННЕР                                          -->
+  <!-- ===================================================================== -->
+  <section id="top" class="relative overflow-hidden border-b border-borderWarm bg-gradient-to-b from-[#F5EFE6]/70 via-cream to-cream">
+    <!-- Декоративное мягкое золотое свечение -->
+    <div class="pointer-events-none absolute -top-24 right-0 w-72 h-72 rounded-full bg-gold/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-24 left-0 w-64 h-64 rounded-full bg-emeraldDark/5 blur-3xl"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-7 sm:py-10">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-borderWarm text-[11px] sm:text-xs font-medium text-gold uppercase tracking-wider mb-3 shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-emeraldDark"></span>
+          Оригинальная парфюмерия · Распив и флаконы
+        </div>
+
+        <h1 class="font-serif text-2xl sm:text-4xl font-semibold text-graphite leading-tight tracking-tight">
+          Нишевые и люксовые ароматы с доставкой по ЧР и всей РФ
+        </h1>
+
+        <p class="mt-2.5 text-sm sm:text-base text-graphite/75 leading-relaxed">
+          Оригиналы в целых флаконах и удобный распив <span class="font-medium text-graphite">10 / 30 / 50 мл</span>. Быстрое оформление заказа в одно сообщение WhatsApp — доставим маршруткой по ЧР, по Грозному, Ozon или СДЭК.
+        </p>
+
+        <!-- Кнопка запуска квиза и преимущества -->
+        <div class="mt-5 flex flex-col sm:flex-row sm:items-center gap-3">
+          <button type="button"
+                  onclick="openQuizModal()"
+                  class="inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-emeraldDark hover:bg-emeraldHover text-white font-medium text-sm sm:text-base shadow-md shadow-emeraldDark/15 transition-all active:scale-[0.99]">
+            <svg class="w-5 h-5 text-goldLight shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+            </svg>
+            <span>Подобрать аромат за 30 секунд</span>
+          </button>
+
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-graphite/65 pt-1 sm:pt-0 sm:pl-2">
+            <span class="inline-flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              100% оригиналы
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Стойкий шлейф
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Отправка в день заказа
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 3. КАТАЛОГ С ДВУМЯ КРУПНЫМИ ВКЛАДКАМИ И ФИЛЬТРАМИ                     -->
+  <!-- ===================================================================== -->
+  <main id="catalog" class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 pb-16">
+    <!-- Две крупные вкладки сверху -->
+    <div class="grid grid-cols-2 gap-2 p-1.5 rounded-2xl bg-white border border-borderWarm shadow-sm mb-5" role="tablist" aria-label="Разделы каталога">
+      <button id="tab-perfume"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              onclick="switchCatalogTab('Парфюм')"
+              class="flex items-center justify-center gap-2 py-3 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all bg-emeraldDark text-white shadow-sm">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="3" width="6" height="3" rx="0.8"></rect>
+          <rect x="6" y="8" width="12" height="13" rx="2.5"></rect>
+        </svg>
+        <span>Парфюм</span>
+      </button>
+
+      <button id="tab-bottle"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              onclick="switchCatalogTab('Флакон')"
+              class="flex items-center justify-center gap-2 py-3 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all text-graphite/75 hover:text-graphite hover:bg-cream">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M10 2h4"></path>
+          <path d="M12 2v3"></path>
+          <rect x="8" y="5" width="8" height="3" rx="1"></rect>
+          <path d="M7 8h10l1 12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L7 8Z"></path>
+        </svg>
+        <span class="truncate">Флаконы на распив <span class="hidden sm:inline font-normal opacity-85">(10 / 30 / 50 мл)</span></span>
+      </button>
+    </div>
+
+    <!-- Подзаголовок вкладки флаконов (виден только на вкладке «Флакон») -->
+    <div id="bottle-tab-intro" class="hidden mb-5 p-4 rounded-2xl bg-white border border-borderWarm flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+      <div>
+        <h2 class="font-serif text-lg sm:text-xl font-semibold text-graphite">Флаконы на распив (10 / 30 / 50 мл)</h2>
+        <p class="text-xs sm:text-sm text-graphite/65 mt-0.5">Стеклянные атомайзеры, флаконы с деревянной крышкой и подарочные кофры — можно добавить к заказу отдельно.</p>
+      </div>
+      <span id="bottle-count-badge" class="self-start sm:self-center text-xs font-medium px-3 py-1 rounded-full bg-goldSoft text-gold border border-gold/20 whitespace-nowrap"></span>
+    </div>
+
+    <!-- Панель поиска и фильтров (видна на вкладке «Парфюм») -->
+    <div id="perfume-filters-wrap" class="space-y-3 mb-6">
+      <!-- Поиск -->
+      <div class="relative">
+        <svg class="w-5 h-5 text-graphite/40 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input id="search-input"
+               type="search"
+               placeholder="Поиск по названию, бренду или нотам (например: ваниль, уд, Creed)..."
+               autocomplete="off"
+               class="w-full pl-11 pr-10 py-3 rounded-xl bg-white border border-borderWarm text-sm text-graphite placeholder:text-graphite/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/15 transition-all" />
+        <button id="clear-search-btn"
+                type="button"
+                onclick="clearSearch()"
+                class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-creamDark text-graphite/60 hover:text-graphite flex items-center justify-center"
+                aria-label="Очистить поиск">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Фильтры: Пол и Семейство -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+        <!-- Пол -->
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5" id="gender-filters" aria-label="Фильтр по полу"></div>
+        <!-- Семейство -->
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5" id="family-filters" aria-label="Фильтр по семейству"></div>
+      </div>
+
+      <!-- Счётчик найденных позиций и сброс -->
+      <div class="flex items-center justify-between text-xs text-graphite/60 pt-0.5">
+        <span id="catalog-results-count">Загрузка каталога...</span>
+        <button id="reset-filters-btn"
+                type="button"
+                onclick="resetAllFilters()"
+                class="hidden text-gold hover:text-emeraldDark font-medium underline underline-offset-2">
+          Сбросить фильтры
+        </button>
+      </div>
+    </div>
+
+    <!-- Индикатор загрузки CSV из Google Таблиц -->
+    <div id="catalog-loader" class="hidden py-12 text-center">
+      <div class="inline-block w-8 h-8 border-2 border-gold/30 border-t-emeraldDark rounded-full animate-spin mb-3"></div>
+      <p class="text-sm text-graphite/65">Загружаем актуальное наличие и цены...</p>
+    </div>
+
+    <!-- Сетка карточек товаров -->
+    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"></div>
+
+    <!-- Пустое состояние поиска -->
+    <div id="empty-catalog-state" class="hidden py-14 px-6 text-center bg-white rounded-2xl border border-borderWarm">
+      <div class="w-12 h-12 mx-auto rounded-full bg-creamDark flex items-center justify-center text-gold mb-3">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </div>
+      <h3 class="font-serif text-lg font-semibold text-graphite">По вашему запросу ничего не найдено</h3>
+      <p class="text-sm text-graphite/65 mt-1 max-w-sm mx-auto">Попробуйте изменить фильтры или напишите нам в WhatsApp — подберём нужный аромат под заказ.</p>
+      <button type="button" onclick="resetAllFilters()" class="mt-4 px-5 py-2.5 rounded-xl bg-emeraldDark text-white text-sm font-medium hover:bg-emeraldHover transition-colors">
+        Показать весь парфюм
+      </button>
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- 4. ПОДВАЛ (ОБРАТНАЯ СВЯЗЬ)                                            -->
+  <!-- ===================================================================== -->
+  <footer id="site-footer" class="border-t border-borderWarm bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div>
+          <div id="footer-shop-name" class="font-serif text-xl font-semibold text-graphite">
+            СайфуЛлах парфюм
+          </div>
+          <p class="text-sm text-graphite/65 mt-1">
+            Оригинальные брендовые флаконы, распив 10 / 30 / 50 мл и атомайзеры.
+          </p>
+          <p class="text-xs text-graphite/50 mt-2">
+            Отправка по ЧР (маршруткой), доставка по Грозному, Ozon, СДЭК и самовывоз.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:items-end gap-2.5 w-full sm:w-auto">
+          <div class="text-xs uppercase tracking-wider text-graphite/50 font-medium">Связь и вопросы</div>
+          <a id="footer-phone-link"
+             href="tel:+79300719595"
+             class="inline-flex items-center gap-2 text-lg font-semibold text-graphite hover:text-emeraldDark transition-colors">
+            <svg class="w-5 h-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span id="footer-phone-text">+7 930 071-95-95</span>
+          </a>
+
+          <a id="footer-whatsapp-link"
+             href="https://wa.me/79300719595"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldHover text-white text-sm font-medium shadow-sm transition-all w-full sm:w-auto">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.49 0 .14 5.34.14 11.91c0 2.1.55 4.15 1.59 5.96L0 24l6.3-1.65a11.9 11.9 0 0 0 5.76 1.47h.01c6.57 0 11.92-5.35 11.92-11.92 0-3.18-1.24-6.17-3.47-8.42ZM12.06 21.8h-.01a9.89 9.89 0 0 1-5.04-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.88 9.88 0 0 1-1.52-5.26c0-5.46 4.44-9.9 9.91-9.9 2.64 0 5.13 1.03 7 2.9a9.84 9.84 0 0 1 2.9 7c0 5.46-4.44 9.89-9.9 9.89Zm5.43-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.21 5.08 4.5.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+            </svg>
+            <span>Задать вопрос в WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-5 border-t border-borderWarm/70 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-graphite/45">
+        <span>© <span id="footer-year"></span> СайфуЛлах парфюм. Все права защищены.</span>
+        <span>Быстрый заказ без регистрации в WhatsApp</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Дополнительный нижний отступ для мобильной липкой панели -->
+  <div id="mobile-bar-spacer" class="hidden h-20 md:hidden"></div>
+
+  <!-- ===================================================================== -->
+  <!-- 5. ЛИПКАЯ НИЖНЯЯ ПАНЕЛЬ НА СМАРТФОНЕ (ВИДНА ПРИ ТОВАРАХ В КОРЗИНЕ)    -->
+  <!-- ===================================================================== -->
+  <div id="mobile-cart-bar"
+       class="hidden fixed bottom-0 inset-x-0 z-40 md:hidden bg-white/95 backdrop-blur-md border-t border-borderWarm shadow-sticky px-4 pt-3 pb-safe">
+    <div class="flex items-center justify-between gap-3">
+      <div>
+        <div id="mobile-bar-count" class="text-xs text-graphite/60 font-medium">0 товаров</div>
+        <div id="mobile-bar-total" class="text-lg font-bold text-graphite leading-tight">0 ₽</div>
+      </div>
+      <button type="button"
+              onclick="openCartDrawer()"
+              class="flex-1 max-w-[220px] py-3 px-4 rounded-xl bg-emeraldDark hover:bg-emeraldHover text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-sm active:scale-[0.98] transition-all">
+        <span>Оформить заказ</span>
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 6. МОДАЛЬНОЕ ОКНО: ИНТЕРАКТИВНЫЙ «ПОДБОРЩИК АРОМАТА» (4 ШАГА)         -->
+  <!-- ===================================================================== -->
+  <div id="quiz-modal"
+       class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="quiz-title">
+    <!-- Затемнение -->
+    <div class="fixed inset-0 bg-graphite/55 backdrop-blur-[2px] backdrop-fade" onclick="closeQuizModal()"></div>
+
+    <!-- Контейнер модального окна -->
+    <div class="relative w-full sm:max-w-lg max-h-[92vh] bg-cream rounded-t-3xl sm:rounded-3xl border border-borderWarm shadow-2xl flex flex-col overflow-hidden">
+      <!-- Шапка квиза -->
+      <div class="px-5 pt-5 pb-3 bg-white border-b border-borderWarm flex items-center justify-between gap-3">
+        <div>
+          <div class="text-[11px] uppercase tracking-wider font-semibold text-gold">Персональный подбор</div>
+          <h2 id="quiz-title" class="font-serif text-lg sm:text-xl font-semibold text-graphite">Подборщик аромата</h2>
+        </div>
+        <button type="button"
+                onclick="closeQuizModal()"
+                class="w-9 h-9 rounded-full bg-cream hover:bg-creamDark text-graphite/70 hover:text-graphite flex items-center justify-center transition-colors"
+                aria-label="Закрыть подборщик">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Прогресс-бар -->
+      <div class="w-full h-1.5 bg-creamDark">
+        <div id="quiz-progress-bar" class="h-full bg-emeraldDark transition-all duration-300" style="width: 25%"></div>
+      </div>
+
+      <!-- Контент шага -->
+      <div id="quiz-body" class="p-5 overflow-y-auto flex-1"></div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 7. ВЫДВИЖНАЯ ПАНЕЛЬ: КОРЗИНА И ПОЛНАЯ ФОРМА ЗАКАЗА В WHATSAPP         -->
+  <!-- ===================================================================== -->
+  <div id="cart-drawer"
+       class="hidden fixed inset-0 z-50 flex justify-end"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="cart-drawer-title">
+    <!-- Затемнение -->
+    <div id="cart-backdrop"
+         class="fixed inset-0 bg-graphite/55 backdrop-blur-[2px] opacity-0 backdrop-fade"
+         onclick="closeCartDrawer()"></div>
+
+    <!-- Выдвижная панель -->
+    <div id="cart-panel"
+         class="relative w-full max-w-lg bg-cream h-full shadow-2xl flex flex-col translate-x-full drawer-panel">
+      <!-- Шапка корзины -->
+      <div class="px-5 py-4 bg-white border-b border-borderWarm flex items-center justify-between shrink-0">
+        <div>
+          <h2 id="cart-drawer-title" class="font-serif text-xl font-semibold text-graphite">Ваш заказ</h2>
+          <p id="cart-subtitle" class="text-xs text-graphite/60">Оформление в одно сообщение WhatsApp</p>
+        </div>
+        <button type="button"
+                onclick="closeCartDrawer()"
+                class="w-9 h-9 rounded-full bg-cream hover:bg-creamDark text-graphite/70 hover:text-graphite flex items-center justify-center transition-colors"
+                aria-label="Закрыть корзину">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Прокручиваемое содержимое корзины и формы -->
+      <div id="cart-scroll-area" class="flex-1 overflow-y-auto px-4 sm:px-5 py-4 space-y-5">
+        <!-- Пустая корзина -->
+        <div id="cart-empty-view" class="hidden py-14 text-center">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-white border border-borderWarm flex items-center justify-center text-gold mb-4 shadow-sm">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+              <path d="M3 6h18"></path>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </div>
+          <h3 class="font-serif text-lg font-semibold text-graphite">Корзина пока пуста</h3>
+          <p class="text-sm text-graphite/65 mt-1 max-w-xs mx-auto">Выберите любимый аромат или флакон под распив — оформим заказ за минуту.</p>
+          <button type="button"
+                  onclick="closeCartDrawer()"
+                  class="mt-5 px-6 py-3 rounded-xl bg-emeraldDark text-white text-sm font-semibold hover:bg-emeraldHover transition-colors">
+            Перейти в каталог
+          </button>
+        </div>
+
+        <!-- Наполненная корзина + форма -->
+        <div id="cart-filled-view" class="space-y-5 pb-6">
+          <!-- Список товаров -->
+          <section aria-label="Выбранные товары">
+            <div class="flex items-center justify-between mb-2.5">
+              <h3 class="text-xs font-semibold uppercase tracking-wider text-graphite/60">Выбранные позиции</h3>
+              <button type="button"
+                      onclick="clearCart()"
+                      class="text-xs text-graphite/50 hover:text-red-600 transition-colors">
+                Очистить
+              </button>
+            </div>
+            <div id="cart-items-list" class="space-y-2.5"></div>
+
+            <!-- Итого -->
+            <div class="mt-3 p-4 rounded-2xl bg-white border border-borderWarm flex items-center justify-between">
+              <span class="text-sm font-medium text-graphite/75">Итого к оплате:</span>
+              <span id="cart-total-display" class="text-xl font-bold text-graphite">0 ₽</span>
+            </div>
+          </section>
+
+          <!-- Форма данных покупателя -->
+          <form id="checkout-form" class="space-y-4" novalidate onsubmit="handleWhatsAppOrder(event)">
+            <div class="bg-white rounded-2xl border border-borderWarm p-4 space-y-4">
+              <h3 class="font-serif text-base font-semibold text-graphite">Данные получателя</h3>
+
+              <!-- Имя получателя -->
+              <div id="field-wrap-name">
+                <label for="customer-name" class="block text-xs font-semibold text-graphite/80 mb-1.5">
+                  Имя получателя <span class="text-red-500">*</span>
+                </label>
+                <input id="customer-name"
+                       type="text"
+                       placeholder="Например: Ибрагим"
+                       autocomplete="name"
+                       class="w-full px-3.5 py-3 rounded-xl bg-cream/60 border border-borderWarm text-sm text-graphite placeholder:text-graphite/40 focus:outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/15 transition-all" />
+                <p id="error-name" class="hidden mt-1 text-xs text-red-600 font-medium">Пожалуйста, укажите имя получателя</p>
+              </div>
+
+              <!-- Телефон получателя -->
+              <div id="field-wrap-phone">
+                <label for="customer-phone" class="block text-xs font-semibold text-graphite/80 mb-1.5">
+                  Номер телефона получателя <span class="text-red-500">*</span>
+                </label>
+                <input id="customer-phone"
+                       type="tel"
+                       inputmode="tel"
+                       placeholder="+7 9XX XXX-XX-XX"
+                       autocomplete="tel"
+                       class="w-full px-3.5 py-3 rounded-xl bg-cream/60 border border-borderWarm text-sm text-graphite placeholder:text-graphite/40 focus:outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/15 transition-all" />
+                <p id="error-phone" class="hidden mt-1 text-xs text-red-600 font-medium">Укажите корректный номер телефона (+7 9XX XXX-XX-XX)</p>
+              </div>
+            </div>
+
+            <!-- Способ доставки (5 крупных кнопок-переключателей) -->
+            <div class="bg-white rounded-2xl border border-borderWarm p-4 space-y-3.5">
+              <h3 class="font-serif text-base font-semibold text-graphite">Способ доставки</h3>
+
+              <div id="delivery-options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <!-- Генерируется скриптом из DELIVERY_OPTIONS -->
+              </div>
+
+              <!-- Умное поле адреса -->
+              <div id="field-wrap-address" class="pt-1">
+                <label id="address-label" for="customer-address" class="block text-xs font-semibold text-graphite/80 mb-1.5">
+                  Населённый пункт / село (куда отправить маршруткой) <span class="text-red-500">*</span>
+                </label>
+                <input id="customer-address"
+                       type="text"
+                       placeholder="Укажите адрес или пункт назначения..."
+                       class="w-full px-3.5 py-3 rounded-xl bg-cream/60 border border-borderWarm text-sm text-graphite placeholder:text-graphite/40 focus:outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/15 transition-all" />
+                <p id="error-address" class="hidden mt-1 text-xs text-red-600 font-medium">Пожалуйста, заполните адрес доставки</p>
+              </div>
+
+              <!-- Подсказка для «Самовывоз» -->
+              <div id="pickup-hint-box" class="hidden p-3.5 rounded-xl bg-goldSoft/80 border border-gold/25 flex items-start gap-2.5 text-xs sm:text-sm text-graphite/85">
+                <svg class="w-5 h-5 text-gold shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                <span>Точку самовывоза и время уточним в WhatsApp</span>
+              </div>
+            </div>
+
+            <!-- Оплата, подарочная упаковка и комментарий -->
+            <div class="bg-white rounded-2xl border border-borderWarm p-4 space-y-4">
+              <div>
+                <h3 class="font-serif text-base font-semibold text-graphite mb-2.5">Способ оплаты</h3>
+                <div id="payment-options-wrap" class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <!-- Генерируется скриптом -->
+                </div>
+              </div>
+
+              <!-- Чекбокс: подарочная упаковка -->
+              <label class="flex items-center gap-3 p-3 rounded-xl bg-cream/70 border border-borderWarm cursor-pointer hover:border-gold/50 transition-colors select-none">
+                <input id="gift-wrap-checkbox"
+                       type="checkbox"
+                       class="w-5 h-5 rounded border-borderWarm text-emeraldDark accent-emeraldDark cursor-pointer" />
+                <div class="flex items-center gap-2 text-sm font-medium text-graphite">
+                  <svg class="w-4 h-4 text-gold shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="8" width="18" height="4" rx="1"></rect>
+                    <path d="M12 8v13"></path>
+                    <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
+                    <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path>
+                  </svg>
+                  <span>Нужна подарочная упаковка</span>
+                </div>
+              </label>
+
+              <!-- Комментарий и пожелания -->
+              <div>
+                <label for="customer-comment" class="block text-xs font-semibold text-graphite/80 mb-1.5">
+                  Комментарий и пожелания
+                </label>
+                <textarea id="customer-comment"
+                          rows="2"
+                          placeholder="Удобное время, вопросы, детали по маршрутке и т.д."
+                          class="w-full px-3.5 py-2.5 rounded-xl bg-cream/60 border border-borderWarm text-sm text-graphite placeholder:text-graphite/40 focus:outline-none focus:bg-white focus:border-gold focus:ring-2 focus:ring-gold/15 transition-all resize-none"></textarea>
+              </div>
+            </div>
+
+            <!-- Кнопки отправки -->
+            <div class="space-y-2.5 pt-1">
+              <button type="submit"
+                      class="w-full py-4 px-5 rounded-xl bg-[#15803D] hover:bg-[#166534] text-white font-semibold text-base flex items-center justify-center gap-2.5 shadow-lg shadow-[#15803D]/20 transition-all active:scale-[0.99]">
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.49 0 .14 5.34.14 11.91c0 2.1.55 4.15 1.59 5.96L0 24l6.3-1.65a11.9 11.9 0 0 0 5.76 1.47h.01c6.57 0 11.92-5.35 11.92-11.92 0-3.18-1.24-6.17-3.47-8.42ZM12.06 21.8h-.01a9.89 9.89 0 0 1-5.04-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.88 9.88 0 0 1-1.52-5.26c0-5.46 4.44-9.9 9.91-9.9 2.64 0 5.13 1.03 7 2.9a9.84 9.84 0 0 1 2.9 7c0 5.46-4.44 9.89-9.9 9.89Zm5.43-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.21 5.08 4.5.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+                </svg>
+                <span>Отправить заказ в WhatsApp</span>
+              </button>
+
+              <button type="button"
+                      onclick="copyOrderText()"
+                      class="w-full py-3 px-4 rounded-xl bg-white hover:bg-creamDark/60 border border-borderWarm text-graphite text-sm font-medium flex items-center justify-center gap-2 transition-colors">
+                <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                </svg>
+                <span>Скопировать текст заказа</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 8. УВЕДОМЛЕНИЯ (TOAST)                                                -->
+  <!-- ===================================================================== -->
+  <div id="toast-container" class="fixed top-20 left-1/2 -translate-x-1/2 z-[60] pointer-events-none flex flex-col items-center gap-2 px-4 w-full max-w-sm"></div>
+
+  <!-- ===================================================================== -->
+  <!-- ОСНОВНОЙ СКРИПТ МАГАЗИНА                                              -->
+  <!-- ===================================================================== -->
+  <script>
+    /* =======================================================================
+       1. БЛОК ПРОСТЫХ НАСТРОЕК МАГАЗИНА
+       Здесь можно быстро поменять название, телефон и ссылку на Google Таблицу
+       ======================================================================= */
+    const SHOP_NAME = "СайфуЛлах парфюм";
+    const OWNER_PHONE_DISPLAY = "+7 930 071-95-95";
+    const WHATSAPP_PHONE = "79300719595"; // Номер для WhatsApp без + и пробелов
+    const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR5i2VLHnoFO0RNC-lAlOOLlPWJSJ8ExU_Vc1d-OboKLbGEwUnjU4zDXC0dPhxNbERUxv2_YrAy8yS0/pub?gid=0&single=true&output=csv"; // Если пусто — показываются встроенные DEMO_PRODUCTS; если вставлена ссылка CSV из Google Таблиц — товары автоматически загружаются оттуда
+
+
+    /* =======================================================================
+       2. ВСТРОЕННЫЕ ДЕМО-ТОВАРЫ (6 ПАРФЮМОВ + 3 ФЛАКОНА ПОД РАСПИВ)
+       Используются по умолчанию, пока GOOGLE_SHEET_CSV_URL пустая
+       ======================================================================= */
+    const DEMO_PRODUCTS = [
+      // --- ПАРФЮМ (6 популярных брендовых ароматов) ---
+      {
+        id: "demo-1",
+        type: "Парфюм",
+        name: "Sauvage Eau de Parfum",
+        brand: "Dior",
+        gender: "Мужской",
+        family: "Свежие",
+        notes: "Калабрийский бергамот, сычуаньский перец, амброксан, звёздчатый анис, ваниль",
+        description: "Культовый свежий и притягательный аромат с благородным пряно-амбровым шлейфом. Безупречен на каждый день и для деловых встреч.",
+        photo: "",
+        volumes: [
+          { key: "10ml", label: "10 мл", price: 1850, photo: "" },
+          { key: "30ml", label: "30 мл", price: 5200, photo: "" },
+          { key: "50ml", label: "50 мл", price: 8400, photo: "" },
+          { key: "full", label: "Флакон 100 мл", price: 15900, photo: "" }
+        ],
+        inStock: true
+      },
+      {
+        id: "demo-2",
+        type: "Парфюм",
+        name: "Aventus",
+        brand: "Creed",
+        gender: "Мужской",
+        family: "Древесные",
+        notes: "Ананас, чёрная смородина, бергамот, берёза, дубовый мох, серая амбра",
+        description: "Легендарная нишевая классика успеха и уверенности. Сочный фруктовый старт переходит в благородную дымную древесину.",
+        photo: "",
+        volumes: [
+          { key: "10ml", label: "10 мл", price: 3900, photo: "" },
+          { key: "30ml", label: "30 мл", price: 11200, photo: "" },
+          { key: "50ml", label: "50 мл", price: 17900, photo: "" },
+          { key: "full", label: "Флакон 100 мл", price: 34500, photo: "" }
+        ],
+        inStock: true
+      },
+      {
+        id: "demo-3",
+        type: "Парфюм",
+        name: "Baccarat Rouge 540",
+        brand: "Maison Francis Kurkdjian",
+        gender: "Унисекс",
+        family: "Сладкие",
+        notes: "Шафран, жасмин, древесный янтарь, серая амбра, еловая смола, белый кедр",
+        description: "Узнаваемый кристальный шлейф жжёного сахара, хвойной смолы и шафрана. Абсолютный хит, собирающий комплименты.",
+        photo: "",
+        volumes: [
+          { key: "10ml", label: "10 мл", price: 3600, photo: "" },
+          { key: "30ml", label: "30 мл", price: 10400, photo: "" },
+          // 50 мл намеренно не указан — кнопка автоматически скрывается
+          { key: "full", label: "Флакон 70 мл", price: 24900, photo: "" }
+        ],
+        inStock: true
+      },
+      {
+        id: "demo-4",
+        type: "Парфюм",
+        name: "Tobacco Vanille",
+        brand: "Tom Ford",
+        gender: "Унисекс",
+        family: "Восточные",
+        notes: "Лист табака, пряности, бобы тонка, какао, ваниль, сухофрукты",
+        description: "Тёплый, статусный и обволакивающий восточно-пряный аромат. Идеально раскрывается в прохладную погоду и на вечерних выходах.",
+        photo: "",
+        volumes: [
+          { key: "10ml", label: "10 мл", price: 3400, photo: "" },
+          { key: "30ml", label: "30 мл", price: 9800, photo: "" },
+          { key: "50ml", label: "50 мл", price: 15900, photo: "" },
+          { key: "full", label: "Флакон 100 мл", price: 29900, photo: "" }
+        ],
+        inStock: true
+      },
+      {
+        id: "demo-5",
+        type: "Парфюм",
+        name: "Black Afgano",
+        brand: "Nasomatto",
+        gender: "Мужской",
+        family: "Древесные",
+        notes: "Дымные смолы, уд, ладан, кофе, табак, тёмная древесина",
+        description: "Гипнотический, густой и невероятно стойкий экстракт. Тёмный уд, дым и кофейная горчинка для ценителей яркого характера.",
+        photo: "",
+        volumes: [
+          { key: "10ml", label: "10 мл", price: 4500, photo: "" },
+          // 30 мл и 50 мл намеренно не указаны — показываются только доступные объёмы
+          { key: "full", label: "Флакон 30 мл", price: 13800, photo: "" }
+        ],
+        inStock: true
+      },
+      {
+        id: "demo-6",
+        type: "Парфюм",
+        name: "Angels' Share",
+        brand: "By Kilian",
+        gender: "Женский",
+        family: "Сладкие",
+        notes: "Коньяк, корица, бобы тонка, дуб, пралине, ваниль, сандал",
+        description: "Роскошный гурманский аромат с аккордами тёплого яблочного пирога с корицей, пралине и благородного дуба.",
+        photo: "",
+        volumes: [
+          { key: "10ml", label: "10 мл", price: 3800, photo: "" },
+          { key: "30ml", label: "30 мл", price: 10900, photo: "" },
+          // 50 мл распив скрыт, доступен целый флакон 50 мл
+          { key: "full", label: "Флакон 50 мл", price: 19500, photo: "" }
+        ],
+        inStock: true
+      },
+
+      // --- ФЛАКОНЫ НА РАСПИВ (3 примера) ---
+      {
+        id: "demo-bottle-1",
+        type: "Флакон",
+        name: "Атомайзер Премиум стекло",
+        brand: "Флакон для распива",
+        gender: "Унисекс",
+        family: "",
+        notes: "Толстое прозрачное стекло, мелкодисперсный металлический распылитель",
+        description: "Универсальный флакон с качественным золотистым или серебристым спреем. Герметичный и удобный для повседневного ношения.",
+        photo: "",
+        volumes: [
+          { key: "10ml", label: "10 мл", price: 150, photo: "" },
+          { key: "30ml", label: "30 мл", price: 250, photo: "" },
+          { key: "50ml", label: "50 мл", price: 350, photo: "" }
+        ],
+        inStock: true
+      },
+      {
+        id: "demo-bottle-2",
+        type: "Флакон",
+        name: "Флакон с деревянной крышкой",
+        brand: "Коллекционная серия",
+        gender: "Унисекс",
+        family: "",
+        notes: "Массивное стекло, крышка из натурального дерева, люксовый распылитель",
+        description: "Стильный флакон в эстетике нишевой парфюмерии. Прекрасно смотрится на полке и идеально подходит для подарка.",
+        photo: "",
+        volumes: [
+          { key: "30ml", label: "30 мл", price: 450, photo: "" },
+          { key: "50ml", label: "50 мл", price: 590, photo: "" }
+        ],
+        inStock: true
+      },
+      {
+        id: "demo-bottle-3",
+        type: "Флакон",
+        name: "Подарочный металлический кофр",
+        brand: "Travel Edition",
+        gender: "Унисекс",
+        family: "",
+        notes: "Ударопрочный алюминиевый корпус, выдвижной поворотный механизм, колба 10 мл",
+        description: "Компактный металлический футляр с защитой от протеканий. Легко помещается в карман, сумку или бардачок автомобиля.",
+        photo: "",
+        volumes: [
+          { key: "10ml", label: "10 мл", price: 490, photo: "" }
+        ],
+        inStock: true
+      }
+    ];
+
+
+    /* =======================================================================
+       3. КОНФИГУРАЦИЯ ДОСТАВКИ, ОПЛАТЫ И СОСТОЯНИЕ ПРИЛОЖЕНИЯ
+       ======================================================================= */
+    const DELIVERY_OPTIONS = [
+      {
+        id: "chr-bus",
+        label: "По ЧР (на маршрутке)",
+        addressRequired: true,
+        addressLabel: "Населённый пункт / село (куда отправить маршруткой)",
+        addressPlaceholder: "Например: Гудермес, Аргун, Шали..."
+      },
+      {
+        id: "grozny",
+        label: "По городу Грозный",
+        addressRequired: true,
+        addressLabel: "Улица, дом и ориентир в Грозном",
+        addressPlaceholder: "Например: пр. Путина, д. 12, ориентир..."
+      },
+      {
+        id: "pickup",
+        label: "Самовывоз",
+        addressRequired: false,
+        addressLabel: "",
+        addressPlaceholder: ""
+      },
+      {
+        id: "ozon",
+        label: "Ozon",
+        addressRequired: true,
+        addressLabel: "Город и адрес пункта выдачи Ozon",
+        addressPlaceholder: "Например: г. Москва, ул. Ленина 15 (ПВЗ Ozon)"
+      },
+      {
+        id: "cdek",
+        label: "СДЭК",
+        addressRequired: true,
+        addressLabel: "Город и адрес пункта выдачи СДЭК",
+        addressPlaceholder: "Например: г. Махачкала, пр. Шамиля 40 (СДЭК)"
+      }
+    ];
+
+    const PAYMENT_OPTIONS = [
+      "Перевод на карту",
+      "Наличными",
+      "Уточню в чате"
+    ];
+
+    const GENDER_FILTERS = ["Все", "Мужской", "Женский", "Унисекс"];
+    const FAMILY_FILTERS = ["Все", "Свежие", "Сладкие", "Древесные", "Восточные"];
+
+    // Глобальное состояние
+    const state = {
+      products: [],
+      activeTab: "Парфюм", // "Парфюм" или "Флакон"
+      searchQuery: "",
+      selectedGender: "Все",
+      selectedFamily: "Все",
+      selectedVolumeByProduct: {}, // productId -> volumeKey
+      cart: [], // [{ cartKey, productId, type, brand, name, volumeKey, volumeLabel, price, qty }]
+      deliveryId: "chr-bus",
+      paymentMethod: "Перевод на карту",
+      quiz: {
+        step: 1,
+        gender: "",
+        family: "",
+        occasion: "",
+        volume: ""
+      }
+    };
+
+
+    /* =======================================================================
+       4. УТИЛИТЫ: ФОРМАТИРОВАНИЕ, GOOGLE ДИСК URL, SVG-ЗАГЛУШКА, TOAST
+       ======================================================================= */
+
+    /**
+     * Форматирует цену в рубли с пробелами: 2500 -> "2 500 ₽"
+     */
+    function formatPrice(num) {
+      const value = Math.round(Number(num) || 0);
+      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " ₽";
+    }
+
+    /**
+     * Склонение слова «товар» для счётчиков
+     */
+    function pluralizeItems(count) {
+      const mod10 = count % 10;
+      const mod100 = count % 100;
+      if (mod10 === 1 && mod100 !== 11) return `${count} товар`;
+      if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return `${count} товара`;
+      return `${count} товаров`;
+    }
+
+    /**
+     * Экранирование HTML для безопасного вывода текста из таблиц
+     */
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    /**
+     * Преобразует ссылки Google Диска в рабочую прямую ссылку для <img>.
+     * Поддерживает форматы:
+     * - https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+     * - https://drive.google.com/open?id=FILE_ID
+     * - https://drive.google.com/uc?export=view&id=FILE_ID
+     */
+    function normalizeImageUrl(url) {
+      if (!url || typeof url !== "string") return "";
+      const trimmed = url.trim();
+      if (!trimmed) return "";
+
+      if (trimmed.includes("drive.google.com")) {
+        // Формат /file/d/ID/...
+        const fileMatch = trimmed.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+        if (fileMatch && fileMatch[1]) {
+          return `https://lh3.googleusercontent.com/d/${fileMatch[1]}`;
+        }
+        // Формат ?id=ID или &id=ID
+        const idMatch = trimmed.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+        if (idMatch && idMatch[1]) {
+          return `https://lh3.googleusercontent.com/d/${idMatch[1]}`;
+        }
+      }
+
+      return trimmed;
+    }
+
+    /**
+     * Создаёт стильную минималистичную SVG-заглушку флакона с подписью названия
+     * (силуэт адаптируется под тип товара и выбранный объём)
+     */
+    function createBottlePlaceholderHTML(product, volume) {
+      const isBottleCategory = product.type === "Флакон";
+      const volKey = volume ? volume.key : "full";
+      const volLabel = volume ? volume.label : "";
+
+      // Палитра акцентов по семейству аромата
+      const familyTintMap = {
+        "Свежие": { liquid: "#E4EFEA", accent: "#064E3B" },
+        "Сладкие": { liquid: "#F4E4D8", accent: "#A67C52" },
+        "Древесные": { liquid: "#E8DFD5", accent: "#6B4F3B" },
+        "Восточные": { liquid: "#EFE2CC", accent: "#926232" }
+      };
+      const tint = familyTintMap[product.family] || { liquid: "#EDE5D8", accent: "#A67C52" };
+
+      // Выбор силуэта SVG в зависимости от объёма / категории
+      let bottleSvg = "";
+
+      if (isBottleCategory || volKey === "10ml") {
+        // Элегантный стройный атомайзер / тревел-флакон (10 мл)
+        bottleSvg = `
+          <svg class="w-24 h-28 mx-auto drop-shadow-sm transition-transform duration-300" viewBox="0 0 120 140" fill="none" aria-hidden="true">
+            <rect x="46" y="14" width="28" height="22" rx="4" fill="#18181B"/>
+            <rect x="48" y="36" width="24" height="6" rx="1.5" fill="#A67C52"/>
+            <rect x="40" y="42" width="40" height="82" rx="9" fill="#FFFFFF" stroke="#D9D0C3" stroke-width="1.6"/>
+            <rect x="43" y="58" width="34" height="63" rx="6" fill="${tint.liquid}"/>
+            <rect x="46" y="68" width="28" height="32" rx="3" fill="#FFFFFF" fill-opacity="0.92" stroke="#E8E2D9"/>
+            <line x1="51" y1="80" x2="69" y2="80" stroke="${tint.accent}" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="54" y1="87" x2="66" y2="87" stroke="#18181B" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        `;
+      } else if (volKey === "30ml") {
+        // Средний вытянутый флакон (30 мл)
+        bottleSvg = `
+          <svg class="w-24 h-28 mx-auto drop-shadow-sm transition-transform duration-300" viewBox="0 0 120 140" fill="none" aria-hidden="true">
+            <rect x="45" y="16" width="30" height="20" rx="3" fill="#064E3B"/>
+            <rect x="51" y="36" width="18" height="8" fill="#A67C52"/>
+            <rect x="33" y="44" width="54" height="80" rx="10" fill="#FFFFFF" stroke="#D9D0C3" stroke-width="1.6"/>
+            <rect x="37" y="56" width="46" height="64" rx="7" fill="${tint.liquid}"/>
+            <rect x="42" y="68" width="36" height="34" rx="3" fill="#FFFFFF" fill-opacity="0.94" stroke="#E8E2D9"/>
+            <line x1="49" y1="81" x2="71" y2="81" stroke="${tint.accent}" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="53" y1="89" x2="67" y2="89" stroke="#18181B" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        `;
+      } else {
+        // Премиальный квадратный флакон (50 мл / Целый флакон)
+        bottleSvg = `
+          <svg class="w-28 h-28 mx-auto drop-shadow-sm transition-transform duration-300" viewBox="0 0 130 140" fill="none" aria-hidden="true">
+            <rect x="49" y="14" width="32" height="22" rx="4" fill="#18181B"/>
+            <rect x="55" y="36" width="20" height="8" fill="#A67C52"/>
+            <rect x="28" y="44" width="74" height="80" rx="12" fill="#FFFFFF" stroke="#D6CCB8" stroke-width="1.8"/>
+            <rect x="33" y="54" width="64" height="65" rx="8" fill="${tint.liquid}"/>
+            <rect x="41" y="66" width="48" height="38" rx="4" fill="#FFFFFF" fill-opacity="0.95" stroke="#E8E2D9"/>
+            <line x1="50" y1="80" x2="80" y2="80" stroke="${tint.accent}" stroke-width="1.7" stroke-linecap="round"/>
+            <line x1="55" y1="89" x2="75" y2="89" stroke="#18181B" stroke-opacity="0.35" stroke-width="1.3" stroke-linecap="round"/>
+            <circle cx="65" cy="96" r="1.8" fill="${tint.accent}"/>
+          </svg>
+        `;
+      }
+
+      return `
+        <div class="w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-b from-[#FAF7F2] to-[#F1EAE0] text-center select-none">
+          ${bottleSvg}
+          <div class="mt-1.5 max-w-[90%]">
+            <div class="text-[10px] uppercase tracking-[0.16em] text-gold font-semibold truncate">${escapeHtml(product.brand || SHOP_NAME)}</div>
+            <div class="font-serif text-xs sm:text-sm font-semibold text-graphite/90 truncate">${escapeHtml(product.name)}</div>
+            ${volLabel ? `<div class="text-[10px] text-graphite/50 mt-0.5">${escapeHtml(volLabel)}</div>` : ""}
+          </div>
+        </div>
+      `;
+    }
+
+    /**
+     * Показывает аккуратное всплывающее уведомление (без alert/confirm)
+     */
+    function showToast(message, type = "success") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      const bgClass = type === "error"
+        ? "bg-red-700 text-white"
+        : "bg-graphite text-cream";
+
+      toast.className = `pointer-events-auto px-4 py-2.5 rounded-xl shadow-lg text-xs sm:text-sm font-medium flex items-center gap-2 transition-all duration-300 opacity-0 -translate-y-2 ${bgClass}`;
+      toast.innerHTML = `
+        <span class="w-2 h-2 rounded-full ${type === "error" ? "bg-red-200" : "bg-goldLight"} shrink-0"></span>
+        <span>${escapeHtml(message)}</span>
+      `;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove("opacity-0", "-translate-y-2");
+      });
+
+      setTimeout(() => {
+        toast.classList.add("opacity-0", "-translate-y-2");
+        setTimeout(() => toast.remove(), 300);
+      }, 2600);
+    }
+
+    /**
+     * Сохранение и восстановление корзины в localStorage
+     */
+    function saveCartToStorage() {
+      try {
+        localStorage.setItem("saifullah_perfume_cart_v1", JSON.stringify(state.cart));
+      } catch (e) {
+        // Игнорируем ограничения приватного режима браузера
+      }
+    }
+
+    function loadCartFromStorage() {
+      try {
+        const raw = localStorage.getItem("saifullah_perfume_cart_v1");
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) {
+            state.cart = parsed.filter(item => item && item.qty > 0 && item.price > 0);
+          }
+        }
+      } catch (e) {
+        state.cart = [];
+      }
+    }
+
+
+    /* =======================================================================
+       5. CMS GOOGLE ТАБЛИЦ: НАДЁЖНЫЙ CSV-ПАРСЕР И МАППИНГ ТОВАРОВ
+       ======================================================================= */
+
+    /**
+     * Надёжный парсер CSV (RFC 4180):
+     * корректно обрабатывает запятые, двойные кавычки и переносы строк внутри ячеек
+     */
+    function parseCSV(csvText) {
+      if (!csvText) return [];
+      // Удаляем UTF-8 BOM, если есть
+      const text = csvText.replace(/^\uFEFF/, "");
+      const rows = [];
+      let row = [];
+      let field = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const nextChar = text[i + 1];
+
+        if (inQuotes) {
+          if (char === '"') {
+            if (nextChar === '"') {
+              // Экранированная кавычка "" -> "
+              field += '"';
+              i++;
+            } else {
+              inQuotes = false;
+            }
+          } else {
+            field += char;
+          }
+        } else {
+          if (char === '"') {
+            inQuotes = true;
+          } else if (char === ",") {
+            row.push(field);
+            field = "";
+          } else if (char === "\r" && nextChar === "\n") {
+            row.push(field);
+            rows.push(row);
+            row = [];
+            field = "";
+            i++;
+          } else if (char === "\n" || char === "\r") {
+            row.push(field);
+            rows.push(row);
+            row = [];
+            field = "";
+          } else {
+            field += char;
+          }
+        }
+      }
+
+      // Добавляем последнюю строку, если она не пустая
+      if (field.length > 0 || row.length > 0) {
+        row.push(field);
+        rows.push(row);
+      }
+
+      return rows.filter(r => r.some(cell => String(cell).trim() !== ""));
+    }
+
+    /**
+     * Очищает числовое значение цены из таблицы (например "2 500 ₽" -> 2500)
+     */
+    function parsePriceValue(raw) {
+      if (raw === undefined || raw === null) return 0;
+      const cleaned = String(raw)
+        .replace(/\s+/g, "")
+        .replace(/₽|руб\.?/gi, "")
+        .replace(",", ".");
+      const num = parseFloat(cleaned);
+      return Number.isFinite(num) && num > 0 ? Math.round(num) : 0;
+    }
+
+    /**
+     * Преобразует строки CSV в массив товаров магазина
+     * Ожидаемые колонки:
+     * Тип, Название, Бренд, Пол, Семейство, Ноты, Описание, Фото,
+     * Цена_10мл, Фото_10мл, Цена_30мл, Фото_30мл, Цена_50мл, Фото_50мл,
+     * Цена_флакон, Объем_флакона, Фото_флакона, В_наличии
+     */
+    function mapCSVToProducts(csvText) {
+      const rows = parseCSV(csvText);
+      if (rows.length < 2) return [];
+
+      // Нормализуем названия колонок для устойчивости к регистру и пробелам
+      const headers = rows[0].map(h =>
+        String(h || "").trim().toLowerCase().replace(/ё/g, "е").replace(/\s+/g, "_")
+      );
+
+      const getCell = (row, ...names) => {
+        for (const name of names) {
+          const idx = headers.indexOf(name.toLowerCase().replace(/ё/g, "е"));
+          if (idx !== -1 && row[idx] !== undefined) {
+            return String(row[idx]).trim();
+          }
+        }
+        return "";
+      };
+
+      const products = [];
+
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const name = getCell(row, "название");
+        if (!name) continue;
+
+        // Проверка наличия: если «Нет» или «0» — скрываем товар
+        const stockRaw = getCell(row, "в_наличии").toLowerCase();
+        if (stockRaw === "нет" || stockRaw === "0" || stockRaw === "false") {
+          continue;
+        }
+
+        // Определяем тип: «Парфюм» или «Флакон»
+        const typeRaw = getCell(row, "тип").toLowerCase();
+        const type = typeRaw.includes("флакон") ? "Флакон" : "Парфюм";
+
+        const mainPhoto = normalizeImageUrl(getCell(row, "фото"));
+
+        // Собираем доступные объёмы (только с ценой > 0)
+        const volumes = [];
+
+        const p10 = parsePriceValue(getCell(row, "цена_10мл"));
+        if (p10 > 0) {
+          volumes.push({
+            key: "10ml",
+            label: "10 мл",
+            price: p10,
+            photo: normalizeImageUrl(getCell(row, "фото_10мл"))
+          });
+        }
+
+        const p30 = parsePriceValue(getCell(row, "цена_30мл"));
+        if (p30 > 0) {
+          volumes.push({
+            key: "30ml",
+            label: "30 мл",
+            price: p30,
+            photo: normalizeImageUrl(getCell(row, "фото_30мл"))
+          });
+        }
+
+        const p50 = parsePriceValue(getCell(row, "цена_50мл"));
+        if (p50 > 0) {
+          volumes.push({
+            key: "50ml",
+            label: "50 мл",
+            price: p50,
+            photo: normalizeImageUrl(getCell(row, "фото_50мл"))
+          });
+        }
+
+        const pFull = parsePriceValue(getCell(row, "цена_флакон"));
+        if (pFull > 0) {
+          const fullVolRaw = getCell(row, "объем_флакона", "объём_флакона");
+          const fullVolNum = fullVolRaw.replace(/[^\d]/g, "");
+          const fullLabel = fullVolNum
+            ? `Флакон ${fullVolNum} мл`
+            : (fullVolRaw ? `Флакон ${fullVolRaw}` : "Целый флакон");
+
+          volumes.push({
+            key: "full",
+            label: fullLabel,
+            price: pFull,
+            photo: normalizeImageUrl(getCell(row, "фото_флакона"))
+          });
+        }
+
+        // Если не задано ни одной цены — пропускаем позицию
+        if (volumes.length === 0) continue;
+
+        products.push({
+          id: `sheet-${i}`,
+          type,
+          name,
+          brand: getCell(row, "бренд") || (type === "Флакон" ? "Флакон для распива" : ""),
+          gender: getCell(row, "пол") || "Унисекс",
+          family: getCell(row, "семейство") || "",
+          notes: getCell(row, "ноты"),
+          description: getCell(row, "описание"),
+          photo: mainPhoto,
+          volumes,
+          inStock: true
+        });
+      }
+
+      return products;
+    }
+
+    /**
+     * Загружает товары из Google Таблицы (если указана ссылка) или берёт DEMO_PRODUCTS
+     */
+    async function loadProducts() {
+      const loaderEl = document.getElementById("catalog-loader");
+      const gridEl = document.getElementById("products-grid");
+
+      if (GOOGLE_SHEET_CSV_URL && GOOGLE_SHEET_CSV_URL.trim() !== "") {
+        try {
+          if (loaderEl) loaderEl.classList.remove("hidden");
+          if (gridEl) gridEl.classList.add("hidden");
+
+          const response = await fetch(GOOGLE_SHEET_CSV_URL.trim(), { cache: "no-store" });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const csvText = await response.text();
+          const parsedProducts = mapCSVToProducts(csvText);
+
+          if (parsedProducts.length > 0) {
+            state.products = parsedProducts;
+          } else {
+            console.warn("Google Таблица вернула 0 активных товаров. Используем DEMO_PRODUCTS.");
+            state.products = DEMO_PRODUCTS.filter(p => p.inStock !== false);
+          }
+        } catch (error) {
+          console.error("Ошибка загрузки Google Таблицы:", error);
+          state.products = DEMO_PRODUCTS.filter(p => p.inStock !== false);
+          showToast("Загружен демо-каталог (проверьте ссылку Google Таблицы)", "error");
+        } finally {
+          if (loaderEl) loaderEl.classList.add("hidden");
+          if (gridEl) gridEl.classList.remove("hidden");
+        }
+      } else {
+        state.products = DEMO_PRODUCTS.filter(p => p.inStock !== false);
+      }
+
+      // Инициализируем выбранный по умолчанию объём для каждого товара
+      state.products.forEach(product => {
+        if (!state.selectedVolumeByProduct[product.id] && product.volumes.length > 0) {
+          state.selectedVolumeByProduct[product.id] = product.volumes[0].key;
+        }
+      });
+
+      renderCatalog();
+    }
+
+
+    /* =======================================================================
+       6. РЕНДЕР КАТАЛОГА, ФИЛЬТРОВ И КАРТОЧЕК ТОВАРОВ
+       ======================================================================= */
+
+    /**
+     * Переключение главных вкладок: «Парфюм» / «Флакон»
+     */
+    function switchCatalogTab(tabType) {
+      state.activeTab = tabType;
+
+      const tabPerfume = document.getElementById("tab-perfume");
+      const tabBottle = document.getElementById("tab-bottle");
+      const perfumeFilters = document.getElementById("perfume-filters-wrap");
+      const bottleIntro = document.getElementById("bottle-tab-intro");
+
+      const activeClasses = ["bg-emeraldDark", "text-white", "shadow-sm"];
+      const inactiveClasses = ["text-graphite/75", "hover:text-graphite", "hover:bg-cream"];
+
+      if (tabType === "Парфюм") {
+        tabPerfume.classList.add(...activeClasses);
+        tabPerfume.classList.remove(...inactiveClasses);
+        tabPerfume.setAttribute("aria-selected", "true");
+
+        tabBottle.classList.remove(...activeClasses);
+        tabBottle.classList.add(...inactiveClasses);
+        tabBottle.setAttribute("aria-selected", "false");
+
+        perfumeFilters.classList.remove("hidden");
+        bottleIntro.classList.add("hidden");
+      } else {
+        tabBottle.classList.add(...activeClasses);
+        tabBottle.classList.remove(...inactiveClasses);
+        tabBottle.setAttribute("aria-selected", "true");
+
+        tabPerfume.classList.remove(...activeClasses);
+        tabPerfume.classList.add(...inactiveClasses);
+        tabPerfume.setAttribute("aria-selected", "false");
+
+        perfumeFilters.classList.add("hidden");
+        bottleIntro.classList.remove("hidden");
+      }
+
+      renderCatalog();
+    }
+
+    /**
+     * Рендер кнопок-фильтров по полу и семейству
+     */
+    function renderFilterPills() {
+      const genderWrap = document.getElementById("gender-filters");
+      const familyWrap = document.getElementById("family-filters");
+
+      if (genderWrap) {
+        genderWrap.innerHTML = GENDER_FILTERS.map(g => {
+          const isActive = state.selectedGender === g;
+          return `
+            <button type="button"
+                    onclick="setGenderFilter('${g}')"
+                    class="px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap border transition-all ${
+                      isActive
+                        ? "bg-graphite text-white border-graphite"
+                        : "bg-white text-graphite/75 border-borderWarm hover:border-gold/60"
+                    }">
+              ${g === "Все" ? "Любой пол" : g}
+            </button>
+          `;
+        }).join("");
+      }
+
+      if (familyWrap) {
+        familyWrap.innerHTML = FAMILY_FILTERS.map(f => {
+          const isActive = state.selectedFamily === f;
+          return `
+            <button type="button"
+                    onclick="setFamilyFilter('${f}')"
+                    class="px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap border transition-all ${
+                      isActive
+                        ? "bg-gold text-white border-gold"
+                        : "bg-white text-graphite/75 border-borderWarm hover:border-gold/60"
+                    }">
+              ${f === "Все" ? "Все семейства" : f}
+            </button>
+          `;
+        }).join("");
+      }
+    }
+
+    function setGenderFilter(gender) {
+      state.selectedGender = gender;
+      renderFilterPills();
+      renderCatalog();
+    }
+
+    function setFamilyFilter(family) {
+      state.selectedFamily = family;
+      renderFilterPills();
+      renderCatalog();
+    }
+
+    function clearSearch() {
+      const input = document.getElementById("search-input");
+      if (input) input.value = "";
+      state.searchQuery = "";
+      document.getElementById("clear-search-btn")?.classList.add("hidden");
+      renderCatalog();
+    }
+
+    function resetAllFilters() {
+      state.searchQuery = "";
+      state.selectedGender = "Все";
+      state.selectedFamily = "Все";
+      const input = document.getElementById("search-input");
+      if (input) input.value = "";
+      document.getElementById("clear-search-btn")?.classList.add("hidden");
+      renderFilterPills();
+      renderCatalog();
+    }
+
+    /**
+     * Возвращает отфильтрованные товары для текущей вкладки
+     */
+    function getFilteredProducts() {
+      const query = state.searchQuery.trim().toLowerCase();
+
+      return state.products.filter(product => {
+        if (product.type !== state.activeTab) return false;
+
+        if (state.activeTab === "Парфюм") {
+          if (state.selectedGender !== "Все") {
+            const pGender = (product.gender || "").toLowerCase();
+            if (pGender !== state.selectedGender.toLowerCase()) return false;
+          }
+
+          if (state.selectedFamily !== "Все") {
+            const pFamily = (product.family || "").toLowerCase();
+            if (pFamily !== state.selectedFamily.toLowerCase()) return false;
+          }
+
+          if (query) {
+            const haystack = `${product.name} ${product.brand} ${product.notes} ${product.description} ${product.family}`.toLowerCase();
+            if (!haystack.includes(query)) return false;
+          }
+        }
+
+        return true;
+      });
+    }
+
+    /**
+     * Возвращает активную ссылку фото для конкретного объёма (с откатом на основное Фото)
+     */
+    function getEffectivePhotoUrl(product, volume) {
+      if (volume && volume.photo) return volume.photo;
+      if (product.photo) return product.photo;
+      return "";
+    }
+
+    /**
+     * Возвращает HTML медиа-области карточки (фото с fallback на SVG-флакон)
+     */
+    function buildProductMediaHTML(product, volume) {
+      const photoUrl = getEffectivePhotoUrl(product, volume);
+      const fallbackHtml = createBottlePlaceholderHTML(product, volume);
+
+      if (!photoUrl) {
+        return `<div class="w-full h-full img-fade">${fallbackHtml}</div>`;
+      }
+
+      return `
+        <div class="relative w-full h-full bg-[#F5F1EB] img-fade">
+          <img src="${escapeHtml(photoUrl)}"
+               alt="${escapeHtml(product.brand)} ${escapeHtml(product.name)} (${escapeHtml(volume.label)})"
+               loading="lazy"
+               class="w-full h-full object-cover img-fade"
+               onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+          <div class="hidden w-full h-full">${fallbackHtml}</div>
+        </div>
+      `;
+    }
+
+    /**
+     * Возвращает HTML кнопки «В корзину» или счётчика «− 1 +» для конкретной карточки
+     */
+    function buildCardActionHTML(product, volume) {
+      const cartKey = `${product.id}__${volume.key}`;
+      const existing = state.cart.find(item => item.cartKey === cartKey);
+
+      if (existing) {
+        return `
+          <div class="flex items-center justify-between h-11 rounded-xl bg-emeraldDark text-white px-1.5 shadow-sm">
+            <button type="button"
+                    onclick="updateCartQty('${cartKey}', -1)"
+                    class="w-9 h-9 rounded-lg hover:bg-white/15 flex items-center justify-center text-lg font-medium transition-colors"
+                    aria-label="Уменьшить количество">−</button>
+            <span class="text-sm font-semibold px-2 select-none">${existing.qty} шт.</span>
+            <button type="button"
+                    onclick="updateCartQty('${cartKey}', 1)"
+                    class="w-9 h-9 rounded-lg hover:bg-white/15 flex items-center justify-center text-lg font-medium transition-colors"
+                    aria-label="Увеличить количество">+</button>
+          </div>
+        `;
+      }
+
+      return `
+        <button type="button"
+                onclick="addToCart('${product.id}', '${volume.key}')"
+                class="w-full h-11 rounded-xl bg-emeraldDark hover:bg-emeraldHover text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.98]">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <path d="M3 6h18"></path>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span>В корзину</span>
+        </button>
+      `;
+    }
+
+    /**
+     * Рендерит всю сетку карточек каталога
+     */
+    function renderCatalog() {
+      const grid = document.getElementById("products-grid");
+      const emptyState = document.getElementById("empty-catalog-state");
+      const countEl = document.getElementById("catalog-results-count");
+      const resetBtn = document.getElementById("reset-filters-btn");
+      const bottleBadge = document.getElementById("bottle-count-badge");
+
+      const items = getFilteredProducts();
+
+      // Обновляем счётчики и кнопку сброса фильтров
+      if (state.activeTab === "Парфюм") {
+        const hasFilters = state.searchQuery.trim() !== "" || state.selectedGender !== "Все" || state.selectedFamily !== "Все";
+        if (countEl) countEl.textContent = `Найдено ароматов: ${items.length}`;
+        if (resetBtn) resetBtn.classList.toggle("hidden", !hasFilters);
+      } else {
+        if (bottleBadge) bottleBadge.textContent = `В наличии: ${items.length}`;
+      }
+
+      if (items.length === 0) {
+        grid.innerHTML = "";
+        emptyState.classList.remove("hidden");
+        return;
+      }
+
+      emptyState.classList.add("hidden");
+
+      grid.innerHTML = items.map(product => {
+        const selectedKey = state.selectedVolumeByProduct[product.id] || product.volumes[0].key;
+        const activeVolume = product.volumes.find(v => v.key === selectedKey) || product.volumes[0];
+
+        const badgesHtml = product.type === "Парфюм"
+          ? `
+            <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10 pointer-events-none">
+              ${product.gender ? `<span class="px-2.5 py-0.5 rounded-full bg-white/90 backdrop-blur-sm border border-borderWarm/80 text-[11px] font-medium text-graphite shadow-sm">${escapeHtml(product.gender)}</span>` : ""}
+              ${product.family ? `<span class="px-2.5 py-0.5 rounded-full bg-goldSoft/95 backdrop-blur-sm border border-gold/25 text-[11px] font-medium text-gold shadow-sm">${escapeHtml(product.family)}</span>` : ""}
+            </div>
+          `
+          : `
+            <div class="absolute top-3 left-3 z-10 pointer-events-none">
+              <span class="px-2.5 py-0.5 rounded-full bg-white/90 backdrop-blur-sm border border-borderWarm/80 text-[11px] font-medium text-gold shadow-sm">Флакон под распив</span>
+            </div>
+          `;
+
+        const volumeButtonsHtml = product.volumes.map(vol => {
+          const isSelected = vol.key === activeVolume.key;
+          return `
+            <button type="button"
+                    data-vol-key="${vol.key}"
+                    onclick="selectProductVolume('${product.id}', '${vol.key}')"
+                    class="px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+                      isSelected
+                        ? "bg-graphite text-white border-graphite shadow-sm"
+                        : "bg-cream/60 text-graphite/80 border-borderWarm hover:border-gold/60 hover:bg-white"
+                    }">
+              ${escapeHtml(vol.label)}
+            </button>
+          `;
+        }).join("");
+
+        return `
+          <article id="card-${product.id}" class="bg-white rounded-2xl border border-borderWarm shadow-card hover:shadow-cardHover transition-shadow flex flex-col overflow-hidden">
+            <!-- Фото / SVG-заглушка товара -->
+            <div class="relative aspect-[4/3] w-full overflow-hidden border-b border-borderWarm/60">
+              ${badgesHtml}
+              <div id="card-media-${product.id}" class="w-full h-full">
+                ${buildProductMediaHTML(product, activeVolume)}
+              </div>
+            </div>
+
+            <!-- Контент карточки -->
+            <div class="p-4 sm:p-5 flex-1 flex flex-col">
+              <!-- Бренд и название -->
+              <div class="text-[11px] uppercase tracking-[0.14em] font-semibold text-gold">
+                ${escapeHtml(product.brand || "Оригинал")}
+              </div>
+              <h3 class="font-serif text-lg sm:text-xl font-semibold text-graphite leading-snug mt-0.5">
+                ${escapeHtml(product.name)}
+              </h3>
+
+              <!-- Ноты -->
+              ${product.notes ? `
+                <p class="mt-2 text-xs text-graphite/75 leading-relaxed">
+                  <span class="font-semibold text-graphite/90">${product.type === "Флакон" ? "Особенности:" : "Ноты:"}</span>
+                  ${escapeHtml(product.notes)}
+                </p>
+              ` : ""}
+
+              <!-- Описание -->
+              ${product.description ? `
+                <p class="mt-1.5 text-xs text-graphite/60 leading-relaxed line-clamp-2">
+                  ${escapeHtml(product.description)}
+                </p>
+              ` : ""}
+
+              <!-- Разделитель к нижней части -->
+              <div class="mt-auto pt-4 space-y-3.5">
+                <!-- Кнопки выбора объёма -->
+                <div>
+                  <div class="text-[11px] text-graphite/55 font-medium mb-1.5">Выберите объём:</div>
+                  <div id="card-vols-${product.id}" class="flex flex-wrap gap-1.5">
+                    ${volumeButtonsHtml}
+                  </div>
+                </div>
+
+                <!-- Цена и кнопка «В корзину» -->
+                <div class="flex items-center justify-between gap-3 pt-1 border-t border-borderWarm/60">
+                  <div>
+                    <div id="card-vol-caption-${product.id}" class="text-[11px] text-graphite/55">${escapeHtml(activeVolume.label)}</div>
+                    <div id="card-price-${product.id}" class="text-xl sm:text-2xl font-bold text-graphite tracking-tight leading-none mt-0.5">
+                      ${formatPrice(activeVolume.price)}
+                    </div>
+                  </div>
+
+                  <div id="card-action-${product.id}" class="w-[142px] shrink-0">
+                    ${buildCardActionHTML(product, activeVolume)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    /**
+     * Плавное переключение объёма на карточке:
+     * обновляет цену, кнопку «В корзину» и плавно меняет фото (если указано своё фото объёма или SVG-силуэт)
+     */
+    function selectProductVolume(productId, volumeKey) {
+      const product = state.products.find(p => p.id === productId);
+      if (!product) return;
+
+      const prevKey = state.selectedVolumeByProduct[productId];
+      if (prevKey === volumeKey) return;
+
+      const newVol = product.volumes.find(v => v.key === volumeKey);
+      if (!newVol) return;
+
+      state.selectedVolumeByProduct[productId] = volumeKey;
+
+      // 1. Обновляем активную кнопку объёма
+      const volsWrap = document.getElementById(`card-vols-${productId}`);
+      if (volsWrap) {
+        volsWrap.querySelectorAll("button[data-vol-key]").forEach(btn => {
+          const active = btn.getAttribute("data-vol-key") === volumeKey;
+          btn.className = `px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+            active
+              ? "bg-graphite text-white border-graphite shadow-sm"
+              : "bg-cream/60 text-graphite/80 border-borderWarm hover:border-gold/60 hover:bg-white"
+          }`;
+        });
+      }
+
+      // 2. Обновляем цену и подпись объёма
+      const priceEl = document.getElementById(`card-price-${productId}`);
+      const volCaptionEl = document.getElementById(`card-vol-caption-${productId}`);
+      if (priceEl) priceEl.textContent = formatPrice(newVol.price);
+      if (volCaptionEl) volCaptionEl.textContent = newVol.label;
+
+      // 3. Обновляем кнопку «В корзину» / счётчик
+      const actionEl = document.getElementById(`card-action-${productId}`);
+      if (actionEl) actionEl.innerHTML = buildCardActionHTML(product, newVol);
+
+      // 4. Плавно меняем фотографию / SVG-флакон
+      const mediaEl = document.getElementById(`card-media-${productId}`);
+      if (mediaEl) {
+        mediaEl.style.opacity = "0.25";
+        setTimeout(() => {
+          mediaEl.innerHTML = buildProductMediaHTML(product, newVol);
+          mediaEl.style.opacity = "1";
+        }, 140);
+      }
+    }
+
+    /**
+     * Обновляет состояние кнопок «В корзину» на всех видимых карточках (без полного перерендера)
+     */
+    function refreshVisibleCardActions() {
+      state.products.forEach(product => {
+        const actionEl = document.getElementById(`card-action-${product.id}`);
+        if (!actionEl) return;
+        const selectedKey = state.selectedVolumeByProduct[product.id] || product.volumes[0].key;
+        const activeVolume = product.volumes.find(v => v.key === selectedKey) || product.volumes[0];
+        actionEl.innerHTML = buildCardActionHTML(product, activeVolume);
+      });
+    }
+
+
+    /* =======================================================================
+       7. КОРЗИНА, УМНАЯ ФОРМА ДОСТАВКИ И ОТПРАВКА В WHATSAPP
+       ======================================================================= */
+
+    function getCartStats() {
+      let totalQty = 0;
+      let totalSum = 0;
+      state.cart.forEach(item => {
+        totalQty += item.qty;
+        totalSum += item.price * item.qty;
+      });
+      return { totalQty, totalSum };
+    }
+
+    /**
+     * Добавление товара в корзину
+     */
+    function addToCart(productId, volumeKey, silent = false) {
+      const product = state.products.find(p => p.id === productId);
+      if (!product) return;
+
+      const volume = product.volumes.find(v => v.key === volumeKey) || product.volumes[0];
+      if (!volume) return;
+
+      const cartKey = `${product.id}__${volume.key}`;
+      const existing = state.cart.find(item => item.cartKey === cartKey);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        state.cart.push({
+          cartKey,
+          productId: product.id,
+          type: product.type,
+          brand: product.brand,
+          name: product.name,
+          volumeKey: volume.key,
+          volumeLabel: volume.label,
+          price: volume.price,
+          qty: 1
+        });
+      }
+
+      saveCartToStorage();
+      updateCartIndicators();
+      refreshVisibleCardActions();
+
+      if (!silent) {
+        showToast(`Добавлено: ${product.name} (${volume.label})`);
+      }
+    }
+
+    /**
+     * Изменение количества товара в корзине (+1 / -1)
+     */
+    function updateCartQty(cartKey, delta) {
+      const idx = state.cart.findIndex(item => item.cartKey === cartKey);
+      if (idx === -1) return;
+
+      state.cart[idx].qty += delta;
+      if (state.cart[idx].qty <= 0) {
+        state.cart.splice(idx, 1);
+      }
+
+      saveCartToStorage();
+      updateCartIndicators();
+      refreshVisibleCardActions();
+      renderCartItemsList();
+    }
+
+    /**
+     * Полное удаление позиции из корзины
+     */
+    function removeCartItem(cartKey) {
+      state.cart = state.cart.filter(item => item.cartKey !== cartKey);
+      saveCartToStorage();
+      updateCartIndicators();
+      refreshVisibleCardActions();
+      renderCartItemsList();
+    }
+
+    /**
+     * Очистка корзины
+     */
+    function clearCart() {
+      state.cart = [];
+      saveCartToStorage();
+      updateCartIndicators();
+      refreshVisibleCardActions();
+      renderCartItemsList();
+      showToast("Корзина очищена");
+    }
+
+    /**
+     * Обновляет счётчики и суммы в шапке и мобильной липкой панели
+     */
+    function updateCartIndicators() {
+      const { totalQty, totalSum } = getCartStats();
+
+      // Шапка
+      const headerCount = document.getElementById("header-cart-count");
+      const headerTotal = document.getElementById("header-cart-total");
+      if (headerCount && headerTotal) {
+        if (totalQty > 0) {
+          headerCount.textContent = totalQty;
+          headerCount.classList.remove("hidden");
+          headerTotal.textContent = formatPrice(totalSum);
+        } else {
+          headerCount.classList.add("hidden");
+          headerTotal.textContent = "Корзина";
+        }
+      }
+
+      // Мобильная липкая нижняя панель
+      const mobileBar = document.getElementById("mobile-cart-bar");
+      const mobileSpacer = document.getElementById("mobile-bar-spacer");
+      const mobileCount = document.getElementById("mobile-bar-count");
+      const mobileTotal = document.getElementById("mobile-bar-total");
+
+      if (mobileBar && mobileSpacer) {
+        if (totalQty > 0) {
+          mobileBar.classList.remove("hidden");
+          mobileSpacer.classList.remove("hidden");
+          if (mobileCount) mobileCount.textContent = pluralizeItems(totalQty);
+          if (mobileTotal) mobileTotal.textContent = formatPrice(totalSum);
+        } else {
+          mobileBar.classList.add("hidden");
+          mobileSpacer.classList.add("hidden");
+        }
+      }
+    }
+
+    /**
+     * Рендерит список позиций внутри панели корзины
+     */
+    function renderCartItemsList() {
+      const emptyView = document.getElementById("cart-empty-view");
+      const filledView = document.getElementById("cart-filled-view");
+      const listEl = document.getElementById("cart-items-list");
+      const totalEl = document.getElementById("cart-total-display");
+
+      if (state.cart.length === 0) {
+        emptyView.classList.remove("hidden");
+        filledView.classList.add("hidden");
+        return;
+      }
+
+      emptyView.classList.add("hidden");
+      filledView.classList.remove("hidden");
+
+      const { totalSum } = getCartStats();
+      if (totalEl) totalEl.textContent = formatPrice(totalSum);
+
+      listEl.innerHTML = state.cart.map(item => `
+        <div class="p-3.5 rounded-2xl bg-white border border-borderWarm flex flex-col gap-2.5">
+          <div class="flex items-start justify-between gap-2">
+            <div class="min-w-0">
+              <div class="text-[10px] uppercase tracking-wider font-semibold text-gold">${escapeHtml(item.brand || item.type)}</div>
+              <div class="font-serif font-semibold text-sm sm:text-base text-graphite leading-snug">${escapeHtml(item.name)}</div>
+              <div class="text-xs text-graphite/60 mt-0.5">Объём: <span class="font-medium text-graphite">${escapeHtml(item.volumeLabel)}</span> · ${formatPrice(item.price)} / шт.</div>
+            </div>
+            <button type="button"
+                    onclick="removeCartItem('${item.cartKey}')"
+                    class="p-1.5 rounded-lg text-graphite/40 hover:text-red-600 hover:bg-red-50 transition-colors shrink-0"
+                    aria-label="Удалить товар">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+            </button>
+          </div>
+
+          <div class="flex items-center justify-between pt-1.5 border-t border-borderWarm/50">
+            <div class="inline-flex items-center rounded-xl bg-cream border border-borderWarm p-0.5">
+              <button type="button"
+                      onclick="updateCartQty('${item.cartKey}', -1)"
+                      class="w-8 h-8 rounded-lg hover:bg-white text-graphite font-semibold flex items-center justify-center transition-colors"
+                      aria-label="Уменьшить">−</button>
+              <span class="w-8 text-center text-sm font-semibold text-graphite select-none">${item.qty}</span>
+              <button type="button"
+                      onclick="updateCartQty('${item.cartKey}', 1)"
+                      class="w-8 h-8 rounded-lg hover:bg-white text-graphite font-semibold flex items-center justify-center transition-colors"
+                      aria-label="Увеличить">+</button>
+            </div>
+
+            <div class="text-base font-bold text-graphite">
+              ${formatPrice(item.price * item.qty)}
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    /**
+     * Открытие / закрытие выдвижной панели корзины
+     */
+    function openCartDrawer() {
+      renderCartItemsList();
+      const drawer = document.getElementById("cart-drawer");
+      const backdrop = document.getElementById("cart-backdrop");
+      const panel = document.getElementById("cart-panel");
+
+      drawer.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+
+      requestAnimationFrame(() => {
+        backdrop.classList.remove("opacity-0");
+        panel.classList.remove("translate-x-full");
+      });
+    }
+
+    function closeCartDrawer() {
+      const drawer = document.getElementById("cart-drawer");
+      const backdrop = document.getElementById("cart-backdrop");
+      const panel = document.getElementById("cart-panel");
+
+      backdrop.classList.add("opacity-0");
+      panel.classList.add("translate-x-full");
+      document.body.style.overflow = "";
+
+      setTimeout(() => {
+        drawer.classList.add("hidden");
+      }, 300);
+    }
+
+    /**
+     * Рендер 5 кнопок способов доставки и умного поля адреса
+     */
+    function renderDeliveryOptions() {
+      const grid = document.getElementById("delivery-options-grid");
+      if (!grid) return;
+
+      grid.innerHTML = DELIVERY_OPTIONS.map((opt, idx) => {
+        const isActive = state.deliveryId === opt.id;
+        // 5-я кнопка занимает всю ширину на 2-колоночной сетке, чтобы не было пустого окна
+        const spanClass = idx === 4 ? "sm:col-span-2" : "";
+        return `
+          <button type="button"
+                  onclick="selectDeliveryOption('${opt.id}')"
+                  class="${spanClass} text-left px-3.5 py-3 rounded-xl border text-xs sm:text-sm font-medium flex items-center justify-between gap-2 transition-all ${
+                    isActive
+                      ? "bg-emeraldDark text-white border-emeraldDark shadow-sm"
+                      : "bg-cream/60 text-graphite border-borderWarm hover:border-gold/70 hover:bg-white"
+                  }">
+            <span>${escapeHtml(opt.label)}</span>
+            <span class="w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${
+              isActive ? "border-white bg-white/15" : "border-graphite/30"
+            }">
+              ${isActive ? '<span class="w-2 h-2 rounded-full bg-goldLight"></span>' : ""}
+            </span>
+          </button>
+        `;
+      }).join("");
+
+      updateSmartAddressField();
+    }
+
+    function selectDeliveryOption(deliveryId) {
+      state.deliveryId = deliveryId;
+      clearFieldError("address");
+      renderDeliveryOptions();
+    }
+
+    /**
+     * Обновляет подпись и видимость умного поля адреса
+     */
+    function updateSmartAddressField() {
+      const option = DELIVERY_OPTIONS.find(d => d.id === state.deliveryId) || DELIVERY_OPTIONS[0];
+      const addressWrap = document.getElementById("field-wrap-address");
+      const addressLabel = document.getElementById("address-label");
+      const addressInput = document.getElementById("customer-address");
+      const pickupHint = document.getElementById("pickup-hint-box");
+
+      if (!option.addressRequired) {
+        addressWrap.classList.add("hidden");
+        pickupHint.classList.remove("hidden");
+      } else {
+        addressWrap.classList.remove("hidden");
+        pickupHint.classList.add("hidden");
+        addressLabel.innerHTML = `${escapeHtml(option.addressLabel)} <span class="text-red-500">*</span>`;
+        addressInput.placeholder = option.addressPlaceholder;
+      }
+    }
+
+    /**
+     * Рендер кнопок выбора способа оплаты
+     */
+    function renderPaymentOptions() {
+      const wrap = document.getElementById("payment-options-wrap");
+      if (!wrap) return;
+
+      wrap.innerHTML = PAYMENT_OPTIONS.map(method => {
+        const isActive = state.paymentMethod === method;
+        return `
+          <button type="button"
+                  onclick="selectPaymentMethod('${method}')"
+                  class="px-3 py-2.5 rounded-xl border text-xs font-medium text-center transition-all ${
+                    isActive
+                      ? "bg-graphite text-white border-graphite shadow-sm"
+                      : "bg-cream/60 text-graphite/80 border-borderWarm hover:border-gold/60 hover:bg-white"
+                  }">
+            ${escapeHtml(method)}
+          </button>
+        `;
+      }).join("");
+    }
+
+    function selectPaymentMethod(method) {
+      state.paymentMethod = method;
+      renderPaymentOptions();
+    }
+
+    /**
+     * Мягкая маска российского номера телефона (+7 9XX XXX-XX-XX)
+     */
+    function formatPhoneInput(value) {
+      let digits = value.replace(/\D/g, "");
+      if (!digits) return "";
+
+      if (digits[0] === "8") digits = "7" + digits.slice(1);
+      if (digits[0] === "9") digits = "7" + digits;
+      if (digits[0] !== "7") digits = "7" + digits;
+
+      digits = digits.slice(0, 11);
+
+      let result = "+7";
+      if (digits.length > 1) result += " " + digits.slice(1, 4);
+      if (digits.length > 4) result += " " + digits.slice(4, 7);
+      if (digits.length > 7) result += "-" + digits.slice(7, 9);
+      if (digits.length > 9) result += "-" + digits.slice(9, 11);
+      return result;
+    }
+
+    /**
+     * Подсветка ошибок валидации и прокрутка к первому пустому полю
+     */
+    function setFieldError(fieldKey, show) {
+      const inputMap = {
+        name: document.getElementById("customer-name"),
+        phone: document.getElementById("customer-phone"),
+        address: document.getElementById("customer-address")
+      };
+      const errorMap = {
+        name: document.getElementById("error-name"),
+        phone: document.getElementById("error-phone"),
+        address: document.getElementById("error-address")
+      };
+
+      const input = inputMap[fieldKey];
+      const err = errorMap[fieldKey];
+      if (!input || !err) return;
+
+      if (show) {
+        input.classList.add("border-red-500", "bg-red-50/40", "ring-2", "ring-red-200", "field-error-shake");
+        input.classList.remove("border-borderWarm");
+        err.classList.remove("hidden");
+        setTimeout(() => input.classList.remove("field-error-shake"), 350);
+      } else {
+        input.classList.remove("border-red-500", "bg-red-50/40", "ring-2", "ring-red-200");
+        input.classList.add("border-borderWarm");
+        err.classList.add("hidden");
+      }
+    }
+
+    function clearFieldError(fieldKey) {
+      setFieldError(fieldKey, false);
+    }
+
+    /**
+     * Валидирует форму заказа. Возвращает данные заказа или null при ошибке.
+     */
+    function validateOrderForm() {
+      if (state.cart.length === 0) {
+        showToast("Добавьте хотя бы один товар в корзину", "error");
+        return null;
+      }
+
+      const nameInput = document.getElementById("customer-name");
+      const phoneInput = document.getElementById("customer-phone");
+      const addressInput = document.getElementById("customer-address");
+      const commentInput = document.getElementById("customer-comment");
+      const giftWrapCheckbox = document.getElementById("gift-wrap-checkbox");
+
+      const deliveryOption = DELIVERY_OPTIONS.find(d => d.id === state.deliveryId) || DELIVERY_OPTIONS[0];
+
+      const nameVal = nameInput.value.trim();
+      const phoneVal = phoneInput.value.trim();
+      const phoneDigits = phoneVal.replace(/\D/g, "");
+      const addressVal = addressInput.value.trim();
+
+      let firstInvalidWrap = null;
+
+      if (!nameVal) {
+        setFieldError("name", true);
+        if (!firstInvalidWrap) firstInvalidWrap = document.getElementById("field-wrap-name");
+      } else {
+        setFieldError("name", false);
+      }
+
+      if (phoneDigits.length < 10) {
+        setFieldError("phone", true);
+        if (!firstInvalidWrap) firstInvalidWrap = document.getElementById("field-wrap-phone");
+      } else {
+        setFieldError("phone", false);
+      }
+
+      if (deliveryOption.addressRequired && !addressVal) {
+        setFieldError("address", true);
+        if (!firstInvalidWrap) firstInvalidWrap = document.getElementById("field-wrap-address");
+      } else {
+        setFieldError("address", false);
+      }
+
+      if (firstInvalidWrap) {
+        firstInvalidWrap.scrollIntoView({ behavior: "smooth", block: "center" });
+        const focusable = firstInvalidWrap.querySelector("input");
+        if (focusable) setTimeout(() => focusable.focus(), 260);
+        showToast("Заполните обязательные поля заказа", "error");
+        return null;
+      }
+
+      return {
+        name: nameVal,
+        phone: phoneVal,
+        delivery: deliveryOption,
+        address: deliveryOption.addressRequired ? addressVal : "Самовывоз (точку и время уточним в чате)",
+        payment: state.paymentMethod,
+        giftWrap: Boolean(giftWrapCheckbox.checked),
+        comment: commentInput.value.trim()
+      };
+    }
+
+    /**
+     * Формирует единое аккуратное сообщение заказа для WhatsApp
+     */
+    function buildWhatsAppOrderText(orderData) {
+      const { totalSum } = getCartStats();
+      const lines = [];
+
+      lines.push(`✨ Новый заказ — ${SHOP_NAME}`);
+      lines.push("");
+      lines.push("🛍 Состав заказа:");
+
+      state.cart.forEach((item, index) => {
+        const brandPrefix = item.brand && item.type === "Парфюм" ? `${item.brand} ` : "";
+        const lineTotal = formatPrice(item.price * item.qty);
+        lines.push(`${index + 1}. ${brandPrefix}${item.name} (${item.volumeLabel}) × ${item.qty} шт. — ${lineTotal}`);
+      });
+
+      lines.push("");
+      lines.push(`💰 Итого: ${formatPrice(totalSum)}`);
+      lines.push("");
+      lines.push(`👤 Получатель: ${orderData.name}`);
+      lines.push(`📞 Телефон: ${orderData.phone}`);
+      lines.push(`🚚 Доставка: ${orderData.delivery.label}`);
+
+      if (orderData.delivery.addressRequired) {
+        lines.push(`📍 Адрес: ${orderData.address}`);
+      } else {
+        lines.push("📍 Самовывоз: точку и время уточним в чате");
+      }
+
+      lines.push(`💳 Оплата: ${orderData.payment}`);
+      lines.push(`🎁 Подарочная упаковка: ${orderData.giftWrap ? "Да, нужна" : "Нет"}`);
+
+      if (orderData.comment) {
+        lines.push(`📝 Комментарий: ${orderData.comment}`);
+      }
+
+      return lines.join("\n");
+    }
+
+    /**
+     * Обработчик отправки заказа в WhatsApp
+     */
+    function handleWhatsAppOrder(event) {
+      event.preventDefault();
+      const orderData = validateOrderForm();
+      if (!orderData) return;
+
+      const message = buildWhatsAppOrderText(orderData);
+      const waUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+
+      window.open(waUrl, "_blank", "noopener,noreferrer");
+      showToast("Открываем WhatsApp с вашим заказом...");
+    }
+
+    /**
+     * Запасная кнопка: скопировать текст заказа в буфер обмена
+     */
+    async function copyOrderText() {
+      const orderData = validateOrderForm();
+      if (!orderData) return;
+
+      const message = buildWhatsAppOrderText(orderData);
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(message);
+        } else {
+          // Фолбэк для старых мобильных браузеров
+          const tempArea = document.createElement("textarea");
+          tempArea.value = message;
+          tempArea.style.position = "fixed";
+          tempArea.style.opacity = "0";
+          document.body.appendChild(tempArea);
+          tempArea.select();
+          document.execCommand("copy");
+          tempArea.remove();
+        }
+        showToast("Текст заказа скопирован!");
+      } catch (err) {
+        showToast("Не удалось скопировать текст", "error");
+      }
+    }
+
+
+    /* =======================================================================
+       8. ИНТЕРАКТИВНЫЙ «ПОДБОРЩИК АРОМАТА» (МОДАЛЬНОЕ ОКНО, 4 ШАГА)
+       ======================================================================= */
+
+    const QUIZ_STEPS = [
+      {
+        step: 1,
+        field: "gender",
+        question: "Шаг 1 из 4 · Для кого ищете аромат?",
+        options: [
+          { value: "Мужской", title: "Мужской", desc: "Выразительные, свежие или древесные акценты" },
+          { value: "Женский", title: "Женский", desc: "Изящные, чувственные и комплиментарные" },
+          { value: "Унисекс", title: "Унисекс", desc: "Современная ниша без строгих границ" },
+          { value: "Неважно", title: "Неважно", desc: "Главное — красивый и стойкий шлейф" }
+        ]
+      },
+      {
+        step: 2,
+        field: "family",
+        question: "Шаг 2 из 4 · Какое направление ближе?",
+        options: [
+          { value: "Свежие", title: "Свежие", desc: "Цитрусы, бергамот, чистота и лёгкость" },
+          { value: "Сладкие", title: "Сладкие", desc: "Ваниль, пралине, шафран, гурманика" },
+          { value: "Древесные", title: "Древесные", desc: "Кедр, берёза, уд, дымная глубина" },
+          { value: "Восточные", title: "Восточные", desc: "Специи, табак, амбра и тёплая смола" }
+        ]
+      },
+      {
+        step: 3,
+        field: "occasion",
+        question: "Шаг 3 из 4 · Для какого повода?",
+        options: [
+          { value: "На каждый день", title: "На каждый день", desc: "Офис, прогулки, универсальный комфорт" },
+          { value: "Вечер и выход", title: "Вечер и выход", desc: "Стойкий, заметный и статусный шлейф" },
+          { value: "В подарок", title: "В подарок", desc: "Беспроигрышные хиты и культовые бренды" }
+        ]
+      },
+      {
+        step: 4,
+        field: "volume",
+        question: "Шаг 4 из 4 · Какой объём удобнее?",
+        options: [
+          { value: "10ml", title: "10 мл", desc: "Попробовать аромат или носить с собой" },
+          { value: "30ml", title: "30 мл", desc: "Оптимальный распив на несколько месяцев" },
+          { value: "50ml", title: "50 мл", desc: "Большой запас любимого аромата" },
+          { value: "full", title: "Целый флакон", desc: "Фирменный оригинальный флакон" }
+        ]
+      }
+    ];
+
+    function openQuizModal() {
+      state.quiz = { step: 1, gender: "", family: "", occasion: "", volume: "" };
+      const modal = document.getElementById("quiz-modal");
+      modal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      renderQuizStep();
+    }
+
+    function closeQuizModal() {
+      const modal = document.getElementById("quiz-modal");
+      modal.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    function selectQuizOption(field, value) {
+      state.quiz[field] = value;
+      if (state.quiz.step < 4) {
+        state.quiz.step += 1;
+        renderQuizStep();
+      } else {
+        state.quiz.step = 5; // Экран результатов
+        renderQuizResults();
+      }
+    }
+
+    function quizGoBack() {
+      if (state.quiz.step > 1) {
+        state.quiz.step -= 1;
+        renderQuizStep();
+      }
+    }
+
+    function renderQuizStep() {
+      const body = document.getElementById("quiz-body");
+      const progress = document.getElementById("quiz-progress-bar");
+      const current = QUIZ_STEPS.find(s => s.step === state.quiz.step);
+      if (!current || !body) return;
+
+      progress.style.width = `${(current.step / 4) * 100}%`;
+
+      body.innerHTML = `
+        <div class="space-y-4">
+          <h3 class="font-serif text-lg sm:text-xl font-semibold text-graphite">${current.question}</h3>
+          <div class="grid grid-cols-1 gap-2.5">
+            ${current.options.map(opt => {
+              const selected = state.quiz[current.field] === opt.value;
+              return `
+                <button type="button"
+                        onclick="selectQuizOption('${current.field}', '${opt.value}')"
+                        class="text-left p-4 rounded-2xl border transition-all flex items-center justify-between gap-3 ${
+                          selected
+                            ? "bg-emeraldDark text-white border-emeraldDark shadow-sm"
+                            : "bg-white text-graphite border-borderWarm hover:border-gold hover:shadow-sm"
+                        }">
+                  <div>
+                    <div class="font-semibold text-sm sm:text-base">${opt.title}</div>
+                    <div class="text-xs mt-0.5 ${selected ? "text-white/80" : "text-graphite/60"}">${opt.desc}</div>
+                  </div>
+                  <svg class="w-5 h-5 shrink-0 ${selected ? "text-goldLight" : "text-gold"}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+              `;
+            }).join("")}
+          </div>
+
+          ${current.step > 1 ? `
+            <div class="pt-2">
+              <button type="button"
+                      onclick="quizGoBack()"
+                      class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-graphite/65 hover:text-graphite">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Назад
+              </button>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    }
+
+    /**
+     * Подбирает 2–3 наиболее подходящих аромата (строго Тип: «Парфюм»)
+     */
+    function getQuizRecommendations() {
+      const perfumes = state.products.filter(p => p.type === "Парфюм");
+      if (perfumes.length === 0) return [];
+
+      const { gender, family, occasion, volume } = state.quiz;
+
+      const scored = perfumes.map(p => {
+        let score = 0;
+
+        // 1. Пол
+        if (gender === "Неважно") {
+          score += 2;
+        } else if ((p.gender || "").toLowerCase() === gender.toLowerCase()) {
+          score += 5;
+        } else if ((p.gender || "").toLowerCase() === "унисекс") {
+          score += 3;
+        }
+
+        // 2. Семейство
+        if ((p.family || "").toLowerCase() === family.toLowerCase()) {
+          score += 6;
+        }
+
+        // 3. Повод
+        const famLow = (p.family || "").toLowerCase();
+        if (occasion === "На каждый день" && (famLow === "свежие" || famLow === "древесные")) {
+          score += 3;
+        } else if (occasion === "Вечер и выход" && (famLow === "восточные" || famLow === "сладкие" || famLow === "древесные")) {
+          score += 3;
+        } else if (occasion === "В подарок") {
+          score += 2;
+        }
+
+        // 4. Наличие выбранного объёма
+        const exactVol = p.volumes.find(v => v.key === volume);
+        if (exactVol) score += 2;
+
+        return {
+          product: p,
+          score,
+          chosenVolume: exactVol || p.volumes[0]
+        };
+      });
+
+      scored.sort((a, b) => b.score - a.score);
+      return scored.slice(0, 3);
+    }
+
+    function addQuizItemToCart(productId, volumeKey, btnEl) {
+      addToCart(productId, volumeKey);
+      if (btnEl) {
+        btnEl.textContent = "В корзине ✓";
+        btnEl.classList.remove("bg-emeraldDark", "hover:bg-emeraldHover");
+        btnEl.classList.add("bg-gold", "text-white");
+      }
+    }
+
+    function renderQuizResults() {
+      const body = document.getElementById("quiz-body");
+      const progress = document.getElementById("quiz-progress-bar");
+      progress.style.width = "100%";
+
+      const recommendations = getQuizRecommendations();
+
+      if (recommendations.length === 0) {
+        body.innerHTML = `
+          <div class="text-center py-8">
+            <p class="text-sm text-graphite/70">Пока нет доступных ароматов в каталоге.</p>
+            <button type="button" onclick="closeQuizModal()" class="mt-4 px-5 py-2.5 rounded-xl bg-emeraldDark text-white text-sm font-medium">Закрыть</button>
+          </div>
+        `;
+        return;
+      }
+
+      body.innerHTML = `
+        <div class="space-y-4">
+          <div>
+            <div class="text-xs font-semibold text-emeraldDark uppercase tracking-wider">Подбор готов</div>
+            <h3 class="font-serif text-xl font-semibold text-graphite mt-0.5">Эти ароматы подойдут вам идеально</h3>
+            <p class="text-xs text-graphite/65 mt-1">
+              Выбрано: ${escapeHtml(state.quiz.gender)} · ${escapeHtml(state.quiz.family)} · ${escapeHtml(state.quiz.occasion)}
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            ${recommendations.map(({ product, chosenVolume }) => {
+              const inCart = state.cart.some(c => c.cartKey === `${product.id}__${chosenVolume.key}`);
+              return `
+                <div class="p-4 rounded-2xl bg-white border border-borderWarm shadow-sm flex flex-col gap-3">
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="min-w-0">
+                      <div class="text-[10px] uppercase tracking-wider font-semibold text-gold">${escapeHtml(product.brand)}</div>
+                      <div class="font-serif text-base font-semibold text-graphite leading-snug">${escapeHtml(product.name)}</div>
+                      <p class="text-xs text-graphite/65 mt-1 line-clamp-2">${escapeHtml(product.notes || product.description)}</p>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-lg bg-goldSoft text-gold text-[11px] font-semibold whitespace-nowrap shrink-0">
+                      ${escapeHtml(chosenVolume.label)}
+                    </span>
+                  </div>
+
+                  <div class="flex items-center justify-between gap-3 pt-2 border-t border-borderWarm/60">
+                    <div class="text-lg font-bold text-graphite">${formatPrice(chosenVolume.price)}</div>
+                    <button type="button"
+                            onclick="addQuizItemToCart('${product.id}', '${chosenVolume.key}', this)"
+                            class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white transition-all active:scale-[0.98] ${
+                              inCart ? "bg-gold" : "bg-emeraldDark hover:bg-emeraldHover"
+                            }">
+                      ${inCart ? "В корзине ✓" : "В корзину"}
+                    </button>
+                  </div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+
+          <div class="flex items-center justify-between gap-2 pt-2">
+            <button type="button"
+                    onclick="openQuizModal()"
+                    class="px-4 py-2.5 rounded-xl border border-borderWarm bg-white text-xs sm:text-sm font-medium text-graphite hover:bg-creamDark/40 transition-colors">
+              Пройти заново
+            </button>
+            <button type="button"
+                    onclick="closeQuizModal(); openCartDrawer();"
+                    class="px-5 py-2.5 rounded-xl bg-graphite text-white text-xs sm:text-sm font-semibold hover:bg-graphite/90 transition-colors">
+              Перейти к заказу
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+
+    /* =======================================================================
+       9. ИНИЦИАЛИЗАЦИЯ МАГАЗИНА И ОБРАБОТЧИКИ СОБЫТИЙ
+       ======================================================================= */
+
+    function applyShopBranding() {
+      document.title = `${SHOP_NAME} — Брендовые флаконы и распив`;
+
+      const headerName = document.getElementById("header-shop-name");
+      const footerName = document.getElementById("footer-shop-name");
+      const headerPhoneText = document.getElementById("header-phone-text");
+      const footerPhoneText = document.getElementById("footer-phone-text");
+      const footerPhoneLink = document.getElementById("footer-phone-link");
+      const headerWaBtn = document.getElementById("header-whatsapp-btn");
+      const footerWaLink = document.getElementById("footer-whatsapp-link");
+      const footerYear = document.getElementById("footer-year");
+
+      if (headerName) headerName.textContent = SHOP_NAME;
+      if (footerName) footerName.textContent = SHOP_NAME;
+      if (headerPhoneText) headerPhoneText.textContent = OWNER_PHONE_DISPLAY;
+      if (footerPhoneText) footerPhoneText.textContent = OWNER_PHONE_DISPLAY;
+      if (footerPhoneLink) footerPhoneLink.href = `tel:+${WHATSAPP_PHONE}`;
+      if (headerWaBtn) headerWaBtn.href = `https://wa.me/${WHATSAPP_PHONE}`;
+      if (footerWaLink) footerWaLink.href = `https://wa.me/${WHATSAPP_PHONE}`;
+      if (footerYear) footerYear.textContent = new Date().getFullYear();
+    }
+
+    function bindEventListeners() {
+      // Живой поиск по каталогу
+      const searchInput = document.getElementById("search-input");
+      const clearBtn = document.getElementById("clear-search-btn");
+      if (searchInput) {
+        searchInput.addEventListener("input", e => {
+          state.searchQuery = e.target.value;
+          if (clearBtn) clearBtn.classList.toggle("hidden", state.searchQuery.trim() === "");
+          renderCatalog();
+        });
+      }
+
+      // Маска телефона и снятие ошибок при вводе
+      const phoneInput = document.getElementById("customer-phone");
+      if (phoneInput) {
+        phoneInput.addEventListener("input", e => {
+          const formatted = formatPhoneInput(e.target.value);
+          e.target.value = formatted;
+          clearFieldError("phone");
+        });
+      }
+
+      document.getElementById("customer-name")?.addEventListener("input", () => clearFieldError("name"));
+      document.getElementById("customer-address")?.addEventListener("input", () => clearFieldError("address"));
+
+      // Закрытие окон по клавише Escape
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") {
+          const quizModal = document.getElementById("quiz-modal");
+          const cartDrawer = document.getElementById("cart-drawer");
+          if (quizModal && !quizModal.classList.contains("hidden")) closeQuizModal();
+          if (cartDrawer && !cartDrawer.classList.contains("hidden")) closeCartDrawer();
+        }
+      });
+    }
+
+    // Точка входа
+    document.addEventListener("DOMContentLoaded", () => {
+      applyShopBranding();
+      loadCartFromStorage();
+      renderFilterPills();
+      renderDeliveryOptions();
+      renderPaymentOptions();
+      updateCartIndicators();
+      bindEventListeners();
+      loadProducts();
+    });
+  </script>
+</body>
+</html>

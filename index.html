@@ -646,7 +646,7 @@
 
     /* =======================================================================
        2. ВСТРОЕННЫЕ ДЕМО-ТОВАРЫ (6 ПАРФЮМОВ + 3 ФЛАКОНА ПОД РАСПИВ)
-       Используются по умолчанию, пока GOOGLE_SHEET_CSV_URL пустая
+       Используются по умолчанию, если GOOGLE_SHEET_CSV_URL пустая или недоступна
        ======================================================================= */
     const DEMO_PRODUCTS = [
       // --- ПАРФЮМ (6 популярных брендовых ароматов) ---
@@ -661,12 +661,13 @@
         description: "Культовый свежий и притягательный аромат с благородным пряно-амбровым шлейфом. Безупречен на каждый день и для деловых встреч.",
         photo: "",
         volumes: [
-          { key: "10ml", label: "10 мл", price: 1850, photo: "" },
-          { key: "30ml", label: "30 мл", price: 5200, photo: "" },
-          { key: "50ml", label: "50 мл", price: 8400, photo: "" },
-          { key: "full", label: "Флакон 100 мл", price: 15900, photo: "" }
+          { key: "10ml", label: "10 мл", price: 1850, photo: "", mlNumber: 10 },
+          { key: "30ml", label: "30 мл", price: 5200, photo: "", mlNumber: 30 },
+          { key: "50ml", label: "50 мл", price: 8400, photo: "", mlNumber: 50 },
+          { key: "full", label: "Флакон 100 мл", price: 15900, photo: "", mlNumber: Infinity }
         ],
-        inStock: true
+        stockStatus: "available",
+        sortOrder: 0
       },
       {
         id: "demo-2",
@@ -679,12 +680,13 @@
         description: "Легендарная нишевая классика успеха и уверенности. Сочный фруктовый старт переходит в благородную дымную древесину.",
         photo: "",
         volumes: [
-          { key: "10ml", label: "10 мл", price: 3900, photo: "" },
-          { key: "30ml", label: "30 мл", price: 11200, photo: "" },
-          { key: "50ml", label: "50 мл", price: 17900, photo: "" },
-          { key: "full", label: "Флакон 100 мл", price: 34500, photo: "" }
+          { key: "10ml", label: "10 мл", price: 3900, photo: "", mlNumber: 10 },
+          { key: "30ml", label: "30 мл", price: 11200, photo: "", mlNumber: 30 },
+          { key: "50ml", label: "50 мл", price: 17900, photo: "", mlNumber: 50 },
+          { key: "full", label: "Флакон 100 мл", price: 34500, photo: "", mlNumber: Infinity }
         ],
-        inStock: true
+        stockStatus: "available",
+        sortOrder: 1
       },
       {
         id: "demo-3",
@@ -697,12 +699,12 @@
         description: "Узнаваемый кристальный шлейф жжёного сахара, хвойной смолы и шафрана. Абсолютный хит, собирающий комплименты.",
         photo: "",
         volumes: [
-          { key: "10ml", label: "10 мл", price: 3600, photo: "" },
-          { key: "30ml", label: "30 мл", price: 10400, photo: "" },
-          // 50 мл намеренно не указан — кнопка автоматически скрывается
-          { key: "full", label: "Флакон 70 мл", price: 24900, photo: "" }
+          { key: "10ml", label: "10 мл", price: 3600, photo: "", mlNumber: 10 },
+          { key: "30ml", label: "30 мл", price: 10400, photo: "", mlNumber: 30 },
+          { key: "full", label: "Флакон 70 мл", price: 24900, photo: "", mlNumber: Infinity }
         ],
-        inStock: true
+        stockStatus: "available",
+        sortOrder: 2
       },
       {
         id: "demo-4",
@@ -715,12 +717,13 @@
         description: "Тёплый, статусный и обволакивающий восточно-пряный аромат. Идеально раскрывается в прохладную погоду и на вечерних выходах.",
         photo: "",
         volumes: [
-          { key: "10ml", label: "10 мл", price: 3400, photo: "" },
-          { key: "30ml", label: "30 мл", price: 9800, photo: "" },
-          { key: "50ml", label: "50 мл", price: 15900, photo: "" },
-          { key: "full", label: "Флакон 100 мл", price: 29900, photo: "" }
+          { key: "10ml", label: "10 мл", price: 3400, photo: "", mlNumber: 10 },
+          { key: "30ml", label: "30 мл", price: 9800, photo: "", mlNumber: 30 },
+          { key: "50ml", label: "50 мл", price: 15900, photo: "", mlNumber: 50 },
+          { key: "full", label: "Флакон 100 мл", price: 29900, photo: "", mlNumber: Infinity }
         ],
-        inStock: true
+        stockStatus: "available",
+        sortOrder: 3
       },
       {
         id: "demo-5",
@@ -733,11 +736,11 @@
         description: "Гипнотический, густой и невероятно стойкий экстракт. Тёмный уд, дым и кофейная горчинка для ценителей яркого характера.",
         photo: "",
         volumes: [
-          { key: "10ml", label: "10 мл", price: 4500, photo: "" },
-          // 30 мл и 50 мл намеренно не указаны — показываются только доступные объёмы
-          { key: "full", label: "Флакон 30 мл", price: 13800, photo: "" }
+          { key: "10ml", label: "10 мл", price: 4500, photo: "", mlNumber: 10 },
+          { key: "full", label: "Флакон 30 мл", price: 13800, photo: "", mlNumber: Infinity }
         ],
-        inStock: true
+        stockStatus: "available",
+        sortOrder: 4
       },
       {
         id: "demo-6",
@@ -750,12 +753,12 @@
         description: "Роскошный гурманский аромат с аккордами тёплого яблочного пирога с корицей, пралине и благородного дуба.",
         photo: "",
         volumes: [
-          { key: "10ml", label: "10 мл", price: 3800, photo: "" },
-          { key: "30ml", label: "30 мл", price: 10900, photo: "" },
-          // 50 мл распив скрыт, доступен целый флакон 50 мл
-          { key: "full", label: "Флакон 50 мл", price: 19500, photo: "" }
+          { key: "10ml", label: "10 мл", price: 3800, photo: "", mlNumber: 10 },
+          { key: "30ml", label: "30 мл", price: 10900, photo: "", mlNumber: 30 },
+          { key: "full", label: "Флакон 50 мл", price: 19500, photo: "", mlNumber: Infinity }
         ],
-        inStock: true
+        stockStatus: "available",
+        sortOrder: 5
       },
 
       // --- ФЛАКОНЫ НА РАСПИВ (3 примера) ---
@@ -763,18 +766,19 @@
         id: "demo-bottle-1",
         type: "Флакон",
         name: "Атомайзер Премиум стекло",
-        brand: "Флакон для распива",
+        brand: "",
         gender: "Унисекс",
         family: "",
         notes: "Толстое прозрачное стекло, мелкодисперсный металлический распылитель",
         description: "Универсальный флакон с качественным золотистым или серебристым спреем. Герметичный и удобный для повседневного ношения.",
         photo: "",
         volumes: [
-          { key: "10ml", label: "10 мл", price: 150, photo: "" },
-          { key: "30ml", label: "30 мл", price: 250, photo: "" },
-          { key: "50ml", label: "50 мл", price: 350, photo: "" }
+          { key: "10ml", label: "10 мл", price: 150, photo: "", mlNumber: 10 },
+          { key: "30ml", label: "30 мл", price: 250, photo: "", mlNumber: 30 },
+          { key: "50ml", label: "50 мл", price: 350, photo: "", mlNumber: 50 }
         ],
-        inStock: true
+        stockStatus: "available",
+        sortOrder: 6
       },
       {
         id: "demo-bottle-2",
@@ -787,10 +791,11 @@
         description: "Стильный флакон в эстетике нишевой парфюмерии. Прекрасно смотрится на полке и идеально подходит для подарка.",
         photo: "",
         volumes: [
-          { key: "30ml", label: "30 мл", price: 450, photo: "" },
-          { key: "50ml", label: "50 мл", price: 590, photo: "" }
+          { key: "30ml", label: "30 мл", price: 450, photo: "", mlNumber: 30 },
+          { key: "50ml", label: "50 мл", price: 590, photo: "", mlNumber: 50 }
         ],
-        inStock: true
+        stockStatus: "available",
+        sortOrder: 7
       },
       {
         id: "demo-bottle-3",
@@ -803,15 +808,16 @@
         description: "Компактный металлический футляр с защитой от протеканий. Легко помещается в карман, сумку или бардачок автомобиля.",
         photo: "",
         volumes: [
-          { key: "10ml", label: "10 мл", price: 490, photo: "" }
+          { key: "10ml", label: "10 мл", price: 490, photo: "", mlNumber: 10 }
         ],
-        inStock: true
+        stockStatus: "available",
+        sortOrder: 8
       }
     ];
 
 
     /* =======================================================================
-       3. КОНФИГУРАЦИЯ ДОСТАВКИ, ОПЛАТЫ И СОСТОЯНИЕ ПРИЛОЖЕНИЯ
+       3. КОНФИГУРАЦИЯ ДОСТАВКИ, ОПЛАТЫ, СТАТУСОВ И СОСТОЯНИЯ ПРИЛОЖЕНИЯ
        ======================================================================= */
     const DELIVERY_OPTIONS = [
       {
@@ -860,6 +866,13 @@
     const GENDER_FILTERS = ["Все", "Мужской", "Женский", "Унисекс"];
     const FAMILY_FILTERS = ["Все", "Свежие", "Сладкие", "Древесные", "Восточные"];
 
+    // Приоритет сортировки по статусу наличия: сначала «В наличии», затем «Скоро», затем «Нет в наличии»
+    const STOCK_STATUS_PRIORITY = {
+      available: 0,
+      soon: 1,
+      out: 2
+    };
+
     // Глобальное состояние
     const state = {
       products: [],
@@ -882,7 +895,7 @@
 
 
     /* =======================================================================
-       4. УТИЛИТЫ: ФОРМАТИРОВАНИЕ, GOOGLE ДИСК URL, SVG-ЗАГЛУШКА, TOAST
+       4. УТИЛИТЫ: ФОРМАТИРОВАНИЕ, GOOGLE ДИСК URL, WHATSAPP-ВОПРОС, SVG, TOAST
        ======================================================================= */
 
     /**
@@ -945,13 +958,31 @@
     }
 
     /**
+     * Формирует ссылку WhatsApp с готовым вопросом о поступлении товара
+     * (используется для статусов «Скоро в наличии» и «Нет в наличии»)
+     */
+    function buildInquiryWhatsAppUrl(product, stockStatus) {
+      const fullName = [product.brand, product.name]
+        .map(part => String(part || "").trim())
+        .filter(Boolean)
+        .join(" ");
+
+      const message = stockStatus === "soon"
+        ? `Ассаляму алейкум! Подскажите, когда появится в наличии ${fullName}?`
+        : `Ассаляму алейкум! Уточните, пожалуйста, ожидается ли поступление ${fullName}?`;
+
+      return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+    }
+
+    /**
      * Создаёт стильную минималистичную SVG-заглушку флакона с подписью названия
-     * (силуэт адаптируется под тип товара и выбранный объём)
+     * (силуэт адаптируется под тип товара и выбранный объём в мл)
      */
     function createBottlePlaceholderHTML(product, volume) {
       const isBottleCategory = product.type === "Флакон";
       const volKey = volume ? volume.key : "full";
       const volLabel = volume ? volume.label : "";
+      const mlNum = volume && Number.isFinite(volume.mlNumber) ? volume.mlNumber : null;
 
       // Палитра акцентов по семейству аромата
       const familyTintMap = {
@@ -965,8 +996,8 @@
       // Выбор силуэта SVG в зависимости от объёма / категории
       let bottleSvg = "";
 
-      if (isBottleCategory || volKey === "10ml") {
-        // Элегантный стройный атомайзер / тревел-флакон (10 мл)
+      if (isBottleCategory || volKey === "10ml" || (mlNum !== null && mlNum <= 15)) {
+        // Элегантный стройный атомайзер / тревел-флакон (до 15 мл)
         bottleSvg = `
           <svg class="w-24 h-28 mx-auto drop-shadow-sm transition-transform duration-300" viewBox="0 0 120 140" fill="none" aria-hidden="true">
             <rect x="46" y="14" width="28" height="22" rx="4" fill="#18181B"/>
@@ -978,8 +1009,8 @@
             <line x1="54" y1="87" x2="66" y2="87" stroke="#18181B" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round"/>
           </svg>
         `;
-      } else if (volKey === "30ml") {
-        // Средний вытянутый флакон (30 мл)
+      } else if (volKey === "30ml" || (mlNum !== null && mlNum <= 35)) {
+        // Средний вытянутый флакон (от 16 до 35 мл)
         bottleSvg = `
           <svg class="w-24 h-28 mx-auto drop-shadow-sm transition-transform duration-300" viewBox="0 0 120 140" fill="none" aria-hidden="true">
             <rect x="45" y="16" width="30" height="20" rx="3" fill="#064E3B"/>
@@ -992,7 +1023,7 @@
           </svg>
         `;
       } else {
-        // Премиальный квадратный флакон (50 мл / Целый флакон)
+        // Премиальный квадратный флакон (от 50 мл / Целый флакон)
         bottleSvg = `
           <svg class="w-28 h-28 mx-auto drop-shadow-sm transition-transform duration-300" viewBox="0 0 130 140" fill="none" aria-hidden="true">
             <rect x="49" y="14" width="32" height="22" rx="4" fill="#18181B"/>
@@ -1007,11 +1038,13 @@
         `;
       }
 
+      const displayBrand = product.brand || (isBottleCategory ? "Флакон для распива" : SHOP_NAME);
+
       return `
         <div class="w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-b from-[#FAF7F2] to-[#F1EAE0] text-center select-none">
           ${bottleSvg}
           <div class="mt-1.5 max-w-[90%]">
-            <div class="text-[10px] uppercase tracking-[0.16em] text-gold font-semibold truncate">${escapeHtml(product.brand || SHOP_NAME)}</div>
+            <div class="text-[10px] uppercase tracking-[0.16em] text-gold font-semibold truncate">${escapeHtml(displayBrand)}</div>
             <div class="font-serif text-xs sm:text-sm font-semibold text-graphite/90 truncate">${escapeHtml(product.name)}</div>
             ${volLabel ? `<div class="text-[10px] text-graphite/50 mt-0.5">${escapeHtml(volLabel)}</div>` : ""}
           </div>
@@ -1075,7 +1108,7 @@
 
 
     /* =======================================================================
-       5. CMS GOOGLE ТАБЛИЦ: НАДЁЖНЫЙ CSV-ПАРСЕР И МАППИНГ ТОВАРОВ
+       5. CMS GOOGLE ТАБЛИЦ: ДИНАМИЧЕСКИЕ ОБЪЁМЫ, СТАТУСЫ НАЛИЧИЯ И CSV-ПАРСЕР
        ======================================================================= */
 
     /**
@@ -1153,24 +1186,112 @@
     }
 
     /**
-     * Преобразует строки CSV в массив товаров магазина
-     * Ожидаемые колонки:
-     * Тип, Название, Бренд, Пол, Семейство, Ноты, Описание, Фото,
-     * Цена_10мл, Фото_10мл, Цена_30мл, Фото_30мл, Цена_50мл, Фото_50мл,
-     * Цена_флакон, Объем_флакона, Фото_флакона, В_наличии
+     * Определяет статус наличия из колонки «В_наличии» без учёта регистра и лишних пробелов:
+     * - «Скрыть» или «0» -> "hidden" (полностью скрываем товар)
+     * - «Скоро» или «Скоро в наличии» -> "soon"
+     * - «Нет» или «Нет в наличии» -> "out"
+     * - «Да» или пусто -> "available"
+     */
+    function parseStockStatus(rawValue) {
+      const normalized = String(rawValue || "")
+        .trim()
+        .toLowerCase()
+        .replace(/ё/g, "е")
+        .replace(/\s+/g, " ");
+
+      if (normalized === "скрыть" || normalized === "0") {
+        return "hidden";
+      }
+      if (normalized === "скоро" || normalized === "скоро в наличии") {
+        return "soon";
+      }
+      if (normalized === "нет" || normalized === "нет в наличии") {
+        return "out";
+      }
+      return "available";
+    }
+
+    /**
+     * Динамически находит в заголовках таблицы все колонки, начинающиеся на «Цена_» (кроме «Цена_флакон»),
+     * сопоставляет им колонки «Фото_» с тем же суффиксом и сортирует по возрастанию числа мл.
+     * Пример: «Цена_5мл» -> «5 мл» (+ «Фото_5мл»), «Цена_15мл» -> «15 мл», «Цена_100мл» -> «100 мл».
+     */
+    function extractDynamicVolumeColumns(normalizedHeaders) {
+      const volumeCols = [];
+
+      normalizedHeaders.forEach((header, idx) => {
+        if (!header.startsWith("цена_")) return;
+        if (header === "цена_флакон") return;
+
+        const suffix = header.slice("цена_".length).replace(/^_+|_+$/g, "");
+        if (!suffix) return;
+
+        const compactSuffix = suffix.replace(/_/g, "");
+
+        // Ищем соответствующую колонку «Фото_» + тот же суффикс (с защитой от лишних подчёркиваний)
+        let photoIdx = normalizedHeaders.indexOf(`фото_${suffix}`);
+        if (photoIdx === -1) {
+          photoIdx = normalizedHeaders.findIndex(col =>
+            col.startsWith("фото_") &&
+            col.slice("фото_".length).replace(/_/g, "") === compactSuffix
+          );
+        }
+
+        // Извлекаем числовое значение объёма в мл для отображения и сортировки
+        const numMatch = suffix.match(/(\d+(?:[.,]\d+)?)/);
+        const mlNumber = numMatch
+          ? parseFloat(numMatch[1].replace(",", "."))
+          : Number.MAX_SAFE_INTEGER;
+
+        let label = "";
+        if (numMatch) {
+          const cleanNumber = numMatch[1].replace(",", ".");
+          const isMlLike = suffix.includes("мл") || suffix.includes("ml") || /^[\d.,_]+$/.test(suffix);
+          label = isMlLike ? `${cleanNumber} мл` : suffix.replace(/_/g, " ");
+        } else {
+          label = suffix.replace(/_/g, " ");
+        }
+
+        const key = numMatch
+          ? `${numMatch[1].replace(",", ".")}ml`
+          : `vol_${compactSuffix}`;
+
+        volumeCols.push({
+          key,
+          label,
+          mlNumber,
+          priceIdx: idx,
+          photoIdx
+        });
+      });
+
+      // Сортируем все найденные объёмы по возрастанию числа мл
+      volumeCols.sort((a, b) => a.mlNumber - b.mlNumber);
+
+      return volumeCols;
+    }
+
+    /**
+     * Преобразует строки CSV в массив товаров магазина.
+     * Автоматически подхватывает любые колонки «Цена_Xмл» / «Фото_Xмл»
+     * и ставит целый флакон («Цена_флакон») последним.
      */
     function mapCSVToProducts(csvText) {
       const rows = parseCSV(csvText);
       if (rows.length < 2) return [];
 
-      // Нормализуем названия колонок для устойчивости к регистру и пробелам
+      // Нормализуем названия колонок для устойчивости к регистру, букве ё и пробелам
       const headers = rows[0].map(h =>
         String(h || "").trim().toLowerCase().replace(/ё/g, "е").replace(/\s+/g, "_")
       );
 
+      // Находим все динамические колонки объёмов (5мл, 10мл, 15мл, 30мл, 50мл, 100мл и любые новые)
+      const dynamicVolumeCols = extractDynamicVolumeColumns(headers);
+
       const getCell = (row, ...names) => {
         for (const name of names) {
-          const idx = headers.indexOf(name.toLowerCase().replace(/ё/g, "е"));
+          const normalizedTarget = name.toLowerCase().replace(/ё/g, "е").replace(/\s+/g, "_");
+          const idx = headers.indexOf(normalizedTarget);
           if (idx !== -1 && row[idx] !== undefined) {
             return String(row[idx]).trim();
           }
@@ -1185,9 +1306,9 @@
         const name = getCell(row, "название");
         if (!name) continue;
 
-        // Проверка наличия: если «Нет» или «0» — скрываем товар
-        const stockRaw = getCell(row, "в_наличии").toLowerCase();
-        if (stockRaw === "нет" || stockRaw === "0" || stockRaw === "false") {
+        // Определяем статус наличия («Скрыть» / «0» скрываются полностью)
+        const stockStatus = parseStockStatus(getCell(row, "в_наличии"));
+        if (stockStatus === "hidden") {
           continue;
         }
 
@@ -1197,43 +1318,27 @@
 
         const mainPhoto = normalizeImageUrl(getCell(row, "фото"));
 
-        // Собираем доступные объёмы (только с ценой > 0)
+        // 1) Собираем все динамические объёмы в порядке возрастания мл (только где цена > 0)
         const volumes = [];
+        dynamicVolumeCols.forEach(col => {
+          const price = parsePriceValue(row[col.priceIdx]);
+          if (price > 0) {
+            const volPhoto = col.photoIdx !== -1 ? normalizeImageUrl(row[col.photoIdx]) : "";
+            volumes.push({
+              key: col.key,
+              label: col.label,
+              price,
+              photo: volPhoto,
+              mlNumber: col.mlNumber
+            });
+          }
+        });
 
-        const p10 = parsePriceValue(getCell(row, "цена_10мл"));
-        if (p10 > 0) {
-          volumes.push({
-            key: "10ml",
-            label: "10 мл",
-            price: p10,
-            photo: normalizeImageUrl(getCell(row, "фото_10мл"))
-          });
-        }
-
-        const p30 = parsePriceValue(getCell(row, "цена_30мл"));
-        if (p30 > 0) {
-          volumes.push({
-            key: "30ml",
-            label: "30 мл",
-            price: p30,
-            photo: normalizeImageUrl(getCell(row, "фото_30мл"))
-          });
-        }
-
-        const p50 = parsePriceValue(getCell(row, "цена_50мл"));
-        if (p50 > 0) {
-          volumes.push({
-            key: "50ml",
-            label: "50 мл",
-            price: p50,
-            photo: normalizeImageUrl(getCell(row, "фото_50мл"))
-          });
-        }
-
+        // 2) Целый флакон («Цена_флакон» + «Объем_флакона» + «Фото_флакона») всегда ставим последним
         const pFull = parsePriceValue(getCell(row, "цена_флакон"));
         if (pFull > 0) {
           const fullVolRaw = getCell(row, "объем_флакона", "объём_флакона");
-          const fullVolNum = fullVolRaw.replace(/[^\d]/g, "");
+          const fullVolNum = fullVolRaw.replace(/[^\d.,]/g, "");
           const fullLabel = fullVolNum
             ? `Флакон ${fullVolNum} мл`
             : (fullVolRaw ? `Флакон ${fullVolRaw}` : "Целый флакон");
@@ -1242,25 +1347,30 @@
             key: "full",
             label: fullLabel,
             price: pFull,
-            photo: normalizeImageUrl(getCell(row, "фото_флакона"))
+            photo: normalizeImageUrl(getCell(row, "фото_флакона")),
+            mlNumber: Infinity
           });
         }
 
-        // Если не задано ни одной цены — пропускаем позицию
-        if (volumes.length === 0) continue;
+        // Если товар «В наличии», но ни одной цены не указано — пропускаем позицию.
+        // Для «Скоро в наличии» и «Нет в наличии» допускаем отображение карточки даже без заполненных цен.
+        if (volumes.length === 0 && stockStatus === "available") {
+          continue;
+        }
 
         products.push({
           id: `sheet-${i}`,
           type,
           name,
-          brand: getCell(row, "бренд") || (type === "Флакон" ? "Флакон для распива" : ""),
+          brand: getCell(row, "бренд"),
           gender: getCell(row, "пол") || "Унисекс",
           family: getCell(row, "семейство") || "",
           notes: getCell(row, "ноты"),
           description: getCell(row, "описание"),
           photo: mainPhoto,
           volumes,
-          inStock: true
+          stockStatus,
+          sortOrder: i
         });
       }
 
@@ -1288,18 +1398,18 @@
             state.products = parsedProducts;
           } else {
             console.warn("Google Таблица вернула 0 активных товаров. Используем DEMO_PRODUCTS.");
-            state.products = DEMO_PRODUCTS.filter(p => p.inStock !== false);
+            state.products = DEMO_PRODUCTS.filter(p => p.stockStatus !== "hidden");
           }
         } catch (error) {
           console.error("Ошибка загрузки Google Таблицы:", error);
-          state.products = DEMO_PRODUCTS.filter(p => p.inStock !== false);
+          state.products = DEMO_PRODUCTS.filter(p => p.stockStatus !== "hidden");
           showToast("Загружен демо-каталог (проверьте ссылку Google Таблицы)", "error");
         } finally {
           if (loaderEl) loaderEl.classList.add("hidden");
           if (gridEl) gridEl.classList.remove("hidden");
         }
       } else {
-        state.products = DEMO_PRODUCTS.filter(p => p.inStock !== false);
+        state.products = DEMO_PRODUCTS.filter(p => p.stockStatus !== "hidden");
       }
 
       // Инициализируем выбранный по умолчанию объём для каждого товара
@@ -1432,12 +1542,13 @@
     }
 
     /**
-     * Возвращает отфильтрованные товары для текущей вкладки
+     * Возвращает отфильтрованные и отсортированные товары для текущей вкладки:
+     * сначала «В наличии», затем «Скоро в наличии», затем «Нет в наличии»
      */
     function getFilteredProducts() {
       const query = state.searchQuery.trim().toLowerCase();
 
-      return state.products.filter(product => {
+      const filtered = state.products.filter(product => {
         if (product.type !== state.activeTab) return false;
 
         if (state.activeTab === "Парфюм") {
@@ -1459,6 +1570,14 @@
 
         return true;
       });
+
+      // Сортировка по статусу наличия с сохранением исходного порядка внутри каждой группы
+      return filtered.sort((a, b) => {
+        const prioA = STOCK_STATUS_PRIORITY[a.stockStatus] ?? 0;
+        const prioB = STOCK_STATUS_PRIORITY[b.stockStatus] ?? 0;
+        if (prioA !== prioB) return prioA - prioB;
+        return (a.sortOrder ?? 0) - (b.sortOrder ?? 0);
+      });
     }
 
     /**
@@ -1476,6 +1595,7 @@
     function buildProductMediaHTML(product, volume) {
       const photoUrl = getEffectivePhotoUrl(product, volume);
       const fallbackHtml = createBottlePlaceholderHTML(product, volume);
+      const altVolumePart = volume && volume.label ? ` (${volume.label})` : "";
 
       if (!photoUrl) {
         return `<div class="w-full h-full img-fade">${fallbackHtml}</div>`;
@@ -1484,7 +1604,7 @@
       return `
         <div class="relative w-full h-full bg-[#F5F1EB] img-fade">
           <img src="${escapeHtml(photoUrl)}"
-               alt="${escapeHtml(product.brand)} ${escapeHtml(product.name)} (${escapeHtml(volume.label)})"
+               alt="${escapeHtml(product.brand)} ${escapeHtml(product.name)}${escapeHtml(altVolumePart)}"
                loading="lazy"
                class="w-full h-full object-cover img-fade"
                onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
@@ -1494,9 +1614,47 @@
     }
 
     /**
-     * Возвращает HTML кнопки «В корзину» или счётчика «− 1 +» для конкретной карточки
+     * Возвращает HTML кнопки действия карточки в зависимости от статуса наличия:
+     * - "available": «В корзину» или счётчик «− N +»
+     * - "soon": золотистая кнопка «Узнать о поступлении» (WhatsApp)
+     * - "out": спокойная кнопка «Уточнить поступление» (WhatsApp)
      */
     function buildCardActionHTML(product, volume) {
+      // 1. Статус «Скоро в наличии»
+      if (product.stockStatus === "soon") {
+        const waUrl = buildInquiryWhatsAppUrl(product, "soon");
+        return `
+          <a href="${escapeHtml(waUrl)}"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="w-full min-h-[44px] px-3 py-2 rounded-xl bg-gold hover:bg-[#8E6740] text-white font-semibold text-xs leading-tight flex items-center justify-center gap-1.5 text-center shadow-sm transition-all active:scale-[0.98]">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.49 0 .14 5.34.14 11.91c0 2.1.55 4.15 1.59 5.96L0 24l6.3-1.65a11.9 11.9 0 0 0 5.76 1.47h.01c6.57 0 11.92-5.35 11.92-11.92 0-3.18-1.24-6.17-3.47-8.42ZM12.06 21.8h-.01a9.89 9.89 0 0 1-5.04-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.88 9.88 0 0 1-1.52-5.26c0-5.46 4.44-9.9 9.91-9.9 2.64 0 5.13 1.03 7 2.9a9.84 9.84 0 0 1 2.9 7c0 5.46-4.44 9.89-9.9 9.89Zm5.43-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.21 5.08 4.5.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+            </svg>
+            <span>Узнать о поступлении</span>
+          </a>
+        `;
+      }
+
+      // 2. Статус «Нет в наличии»
+      if (product.stockStatus === "out") {
+        const waUrl = buildInquiryWhatsAppUrl(product, "out");
+        return `
+          <a href="${escapeHtml(waUrl)}"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="w-full min-h-[44px] px-3 py-2 rounded-xl bg-cream hover:bg-creamDark border border-borderWarm text-graphite/85 hover:text-graphite font-medium text-xs leading-tight flex items-center justify-center gap-1.5 text-center transition-all active:scale-[0.98]">
+            <svg class="w-4 h-4 text-graphite/60 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.49 0 .14 5.34.14 11.91c0 2.1.55 4.15 1.59 5.96L0 24l6.3-1.65a11.9 11.9 0 0 0 5.76 1.47h.01c6.57 0 11.92-5.35 11.92-11.92 0-3.18-1.24-6.17-3.47-8.42ZM12.06 21.8h-.01a9.89 9.89 0 0 1-5.04-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.88 9.88 0 0 1-1.52-5.26c0-5.46 4.44-9.9 9.91-9.9 2.64 0 5.13 1.03 7 2.9a9.84 9.84 0 0 1 2.9 7c0 5.46-4.44 9.89-9.9 9.89Zm5.43-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.21 5.08 4.5.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+            </svg>
+            <span>Уточнить поступление</span>
+          </a>
+        `;
+      }
+
+      // 3. Обычный товар «В наличии»
+      if (!volume) return "";
+
       const cartKey = `${product.id}__${volume.key}`;
       const existing = state.cart.find(item => item.cartKey === cartKey);
 
@@ -1541,6 +1699,7 @@
       const bottleBadge = document.getElementById("bottle-count-badge");
 
       const items = getFilteredProducts();
+      const availableCount = items.filter(p => p.stockStatus === "available").length;
 
       // Обновляем счётчики и кнопку сброса фильтров
       if (state.activeTab === "Парфюм") {
@@ -1548,7 +1707,11 @@
         if (countEl) countEl.textContent = `Найдено ароматов: ${items.length}`;
         if (resetBtn) resetBtn.classList.toggle("hidden", !hasFilters);
       } else {
-        if (bottleBadge) bottleBadge.textContent = `В наличии: ${items.length}`;
+        if (bottleBadge) {
+          bottleBadge.textContent = availableCount === items.length
+            ? `В наличии: ${items.length}`
+            : `В наличии: ${availableCount} из ${items.length}`;
+        }
       }
 
       if (items.length === 0) {
@@ -1560,12 +1723,28 @@
       emptyState.classList.add("hidden");
 
       grid.innerHTML = items.map(product => {
-        const selectedKey = state.selectedVolumeByProduct[product.id] || product.volumes[0].key;
-        const activeVolume = product.volumes.find(v => v.key === selectedKey) || product.volumes[0];
+        const hasVolumes = product.volumes && product.volumes.length > 0;
+        const selectedKey = hasVolumes
+          ? (state.selectedVolumeByProduct[product.id] || product.volumes[0].key)
+          : "";
+        const activeVolume = hasVolumes
+          ? (product.volumes.find(v => v.key === selectedKey) || product.volumes[0])
+          : null;
 
+        const isSoon = product.stockStatus === "soon";
+        const isOut = product.stockStatus === "out";
+
+        // Стили карточки в зависимости от статуса наличия
+        const cardSurfaceClass = isOut
+          ? "bg-white/75 border-borderWarm/80 shadow-sm"
+          : isSoon
+            ? "bg-white border-gold/45 shadow-card hover:shadow-cardHover"
+            : "bg-white border-borderWarm shadow-card hover:shadow-cardHover";
+
+        // Левые бейджи (пол / семейство / категория)
         const badgesHtml = product.type === "Парфюм"
           ? `
-            <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10 pointer-events-none">
+            <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10 pointer-events-none max-w-[60%]">
               ${product.gender ? `<span class="px-2.5 py-0.5 rounded-full bg-white/90 backdrop-blur-sm border border-borderWarm/80 text-[11px] font-medium text-graphite shadow-sm">${escapeHtml(product.gender)}</span>` : ""}
               ${product.family ? `<span class="px-2.5 py-0.5 rounded-full bg-goldSoft/95 backdrop-blur-sm border border-gold/25 text-[11px] font-medium text-gold shadow-sm">${escapeHtml(product.family)}</span>` : ""}
             </div>
@@ -1576,77 +1755,114 @@
             </div>
           `;
 
-        const volumeButtonsHtml = product.volumes.map(vol => {
-          const isSelected = vol.key === activeVolume.key;
-          return `
-            <button type="button"
-                    data-vol-key="${vol.key}"
-                    onclick="selectProductVolume('${product.id}', '${vol.key}')"
-                    class="px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-all ${
-                      isSelected
-                        ? "bg-graphite text-white border-graphite shadow-sm"
-                        : "bg-cream/60 text-graphite/80 border-borderWarm hover:border-gold/60 hover:bg-white"
-                    }">
-              ${escapeHtml(vol.label)}
-            </button>
-          `;
-        }).join("");
+        // Правый бейдж статуса наличия («Скоро в наличии» или «Нет в наличии»)
+        const statusBadgeHtml = isSoon
+          ? `
+            <div class="absolute top-3 right-3 z-10 pointer-events-none">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gold text-white text-[11px] font-semibold tracking-wide shadow-md border border-goldLight/60">
+                <span class="w-1.5 h-1.5 rounded-full bg-cream animate-pulse"></span>
+                Скоро в наличии
+              </span>
+            </div>
+          `
+          : isOut
+            ? `
+              <div class="absolute top-3 right-3 z-10 pointer-events-none">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-graphite/80 backdrop-blur-sm text-cream text-[11px] font-medium shadow-sm">
+                  Нет в наличии
+                </span>
+              </div>
+            `
+            : "";
+
+        const volumeButtonsHtml = hasVolumes
+          ? product.volumes.map(vol => {
+              const isSelected = vol.key === activeVolume.key;
+              return `
+                <button type="button"
+                        data-vol-key="${vol.key}"
+                        onclick="selectProductVolume('${product.id}', '${vol.key}')"
+                        class="px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+                          isSelected
+                            ? "bg-graphite text-white border-graphite shadow-sm"
+                            : "bg-cream/60 text-graphite/80 border-borderWarm hover:border-gold/60 hover:bg-white"
+                        }">
+                  ${escapeHtml(vol.label)}
+                </button>
+              `;
+            }).join("")
+          : "";
+
+        const displayBrand = product.brand || (product.type === "Флакон" ? "Флакон для распива" : "Оригинал");
+
+        // Ширина контейнера кнопки: для WhatsApp-кнопок даём чуть больше пространства, чтобы текст выглядел аккуратно
+        const actionWrapperClass = (isSoon || isOut)
+          ? (hasVolumes ? "flex-1 max-w-[196px]" : "w-full")
+          : "w-[142px] shrink-0";
 
         return `
-          <article id="card-${product.id}" class="bg-white rounded-2xl border border-borderWarm shadow-card hover:shadow-cardHover transition-shadow flex flex-col overflow-hidden">
+          <article id="card-${product.id}" class="rounded-2xl border transition-all flex flex-col overflow-hidden ${cardSurfaceClass}">
             <!-- Фото / SVG-заглушка товара -->
             <div class="relative aspect-[4/3] w-full overflow-hidden border-b border-borderWarm/60">
               ${badgesHtml}
-              <div id="card-media-${product.id}" class="w-full h-full">
+              ${statusBadgeHtml}
+              <div id="card-media-${product.id}" class="w-full h-full transition-all ${isOut ? "opacity-60 grayscale-[35%]" : ""}">
                 ${buildProductMediaHTML(product, activeVolume)}
               </div>
             </div>
 
             <!-- Контент карточки -->
             <div class="p-4 sm:p-5 flex-1 flex flex-col">
-              <!-- Бренд и название -->
-              <div class="text-[11px] uppercase tracking-[0.14em] font-semibold text-gold">
-                ${escapeHtml(product.brand || "Оригинал")}
+              <!-- Основной текст карточки (слегка приглушается для «Нет в наличии») -->
+              <div class="${isOut ? "opacity-70" : ""}">
+                <!-- Бренд и название -->
+                <div class="text-[11px] uppercase tracking-[0.14em] font-semibold text-gold">
+                  ${escapeHtml(displayBrand)}
+                </div>
+                <h3 class="font-serif text-lg sm:text-xl font-semibold text-graphite leading-snug mt-0.5">
+                  ${escapeHtml(product.name)}
+                </h3>
+
+                <!-- Ноты -->
+                ${product.notes ? `
+                  <p class="mt-2 text-xs text-graphite/75 leading-relaxed">
+                    <span class="font-semibold text-graphite/90">${product.type === "Флакон" ? "Особенности:" : "Ноты:"}</span>
+                    ${escapeHtml(product.notes)}
+                  </p>
+                ` : ""}
+
+                <!-- Описание -->
+                ${product.description ? `
+                  <p class="mt-1.5 text-xs text-graphite/60 leading-relaxed line-clamp-2">
+                    ${escapeHtml(product.description)}
+                  </p>
+                ` : ""}
               </div>
-              <h3 class="font-serif text-lg sm:text-xl font-semibold text-graphite leading-snug mt-0.5">
-                ${escapeHtml(product.name)}
-              </h3>
-
-              <!-- Ноты -->
-              ${product.notes ? `
-                <p class="mt-2 text-xs text-graphite/75 leading-relaxed">
-                  <span class="font-semibold text-graphite/90">${product.type === "Флакон" ? "Особенности:" : "Ноты:"}</span>
-                  ${escapeHtml(product.notes)}
-                </p>
-              ` : ""}
-
-              <!-- Описание -->
-              ${product.description ? `
-                <p class="mt-1.5 text-xs text-graphite/60 leading-relaxed line-clamp-2">
-                  ${escapeHtml(product.description)}
-                </p>
-              ` : ""}
 
               <!-- Разделитель к нижней части -->
               <div class="mt-auto pt-4 space-y-3.5">
                 <!-- Кнопки выбора объёма -->
-                <div>
-                  <div class="text-[11px] text-graphite/55 font-medium mb-1.5">Выберите объём:</div>
-                  <div id="card-vols-${product.id}" class="flex flex-wrap gap-1.5">
-                    ${volumeButtonsHtml}
-                  </div>
-                </div>
-
-                <!-- Цена и кнопка «В корзину» -->
-                <div class="flex items-center justify-between gap-3 pt-1 border-t border-borderWarm/60">
-                  <div>
-                    <div id="card-vol-caption-${product.id}" class="text-[11px] text-graphite/55">${escapeHtml(activeVolume.label)}</div>
-                    <div id="card-price-${product.id}" class="text-xl sm:text-2xl font-bold text-graphite tracking-tight leading-none mt-0.5">
-                      ${formatPrice(activeVolume.price)}
+                ${hasVolumes ? `
+                  <div class="${isOut ? "opacity-75" : ""}">
+                    <div class="text-[11px] text-graphite/55 font-medium mb-1.5">Выберите объём:</div>
+                    <div id="card-vols-${product.id}" class="flex flex-wrap gap-1.5">
+                      ${volumeButtonsHtml}
                     </div>
                   </div>
+                ` : ""}
 
-                  <div id="card-action-${product.id}" class="w-[142px] shrink-0">
+                <!-- Цена и кнопка действия -->
+                <div class="flex items-center justify-between gap-3 pt-2 border-t border-borderWarm/60">
+                  ${hasVolumes ? `
+                    <div class="${isOut ? "opacity-65" : ""} shrink-0">
+                      <div id="card-vol-caption-${product.id}" class="text-[11px] text-graphite/55">${escapeHtml(activeVolume.label)}</div>
+                      <div id="card-price-${product.id}" class="text-xl sm:text-2xl font-bold text-graphite tracking-tight leading-none mt-0.5">
+                        ${formatPrice(activeVolume.price)}
+                      </div>
+                    </div>
+                  ` : ""}
+
+                  <div id="card-action-${product.id}" class="${actionWrapperClass}">
                     ${buildCardActionHTML(product, activeVolume)}
                   </div>
                 </div>
@@ -1659,7 +1875,7 @@
 
     /**
      * Плавное переключение объёма на карточке:
-     * обновляет цену, кнопку «В корзину» и плавно меняет фото (если указано своё фото объёма или SVG-силуэт)
+     * обновляет цену, кнопку действия и плавно меняет фото (если указано своё фото объёма или SVG-силуэт)
      */
     function selectProductVolume(productId, volumeKey) {
       const product = state.products.find(p => p.id === productId);
@@ -1692,7 +1908,7 @@
       if (priceEl) priceEl.textContent = formatPrice(newVol.price);
       if (volCaptionEl) volCaptionEl.textContent = newVol.label;
 
-      // 3. Обновляем кнопку «В корзину» / счётчик
+      // 3. Обновляем кнопку «В корзину» / счётчик / WhatsApp
       const actionEl = document.getElementById(`card-action-${productId}`);
       if (actionEl) actionEl.innerHTML = buildCardActionHTML(product, newVol);
 
@@ -1702,7 +1918,7 @@
         mediaEl.style.opacity = "0.25";
         setTimeout(() => {
           mediaEl.innerHTML = buildProductMediaHTML(product, newVol);
-          mediaEl.style.opacity = "1";
+          mediaEl.style.opacity = product.stockStatus === "out" ? "0.6" : "1";
         }, 140);
       }
     }
@@ -1714,8 +1930,13 @@
       state.products.forEach(product => {
         const actionEl = document.getElementById(`card-action-${product.id}`);
         if (!actionEl) return;
-        const selectedKey = state.selectedVolumeByProduct[product.id] || product.volumes[0].key;
-        const activeVolume = product.volumes.find(v => v.key === selectedKey) || product.volumes[0];
+        const hasVolumes = product.volumes && product.volumes.length > 0;
+        const selectedKey = hasVolumes
+          ? (state.selectedVolumeByProduct[product.id] || product.volumes[0].key)
+          : "";
+        const activeVolume = hasVolumes
+          ? (product.volumes.find(v => v.key === selectedKey) || product.volumes[0])
+          : null;
         actionEl.innerHTML = buildCardActionHTML(product, activeVolume);
       });
     }
@@ -1736,14 +1957,14 @@
     }
 
     /**
-     * Добавление товара в корзину
+     * Добавление товара в корзину (только для товаров «В наличии»)
      */
     function addToCart(productId, volumeKey, silent = false) {
       const product = state.products.find(p => p.id === productId);
-      if (!product) return;
+      if (!product || product.stockStatus !== "available") return;
 
       const volume = product.volumes.find(v => v.key === volumeKey) || product.volumes[0];
-      if (!volume) return;
+      if (!volume || volume.price <= 0) return;
 
       const cartKey = `${product.id}__${volume.key}`;
       const existing = state.cart.find(item => item.cartKey === cartKey);
@@ -2364,10 +2585,13 @@
     }
 
     /**
-     * Подбирает 2–3 наиболее подходящих аромата (строго Тип: «Парфюм»)
+     * Подбирает 2–3 наиболее подходящих аромата:
+     * строго Тип: «Парфюм» и только те, что сейчас В НАЛИЧИИ («Да»)
      */
     function getQuizRecommendations() {
-      const perfumes = state.products.filter(p => p.type === "Парфюм");
+      const perfumes = state.products.filter(
+        p => p.type === "Парфюм" && p.stockStatus === "available" && p.volumes.length > 0
+      );
       if (perfumes.length === 0) return [];
 
       const { gender, family, occasion, volume } = state.quiz;
@@ -2433,7 +2657,7 @@
       if (recommendations.length === 0) {
         body.innerHTML = `
           <div class="text-center py-8">
-            <p class="text-sm text-graphite/70">Пока нет доступных ароматов в каталоге.</p>
+            <p class="text-sm text-graphite/70">Сейчас нет доступных ароматов в наличии для подбора.</p>
             <button type="button" onclick="closeQuizModal()" class="mt-4 px-5 py-2.5 rounded-xl bg-emeraldDark text-white text-sm font-medium">Закрыть</button>
           </div>
         `;
@@ -2457,7 +2681,7 @@
                 <div class="p-4 rounded-2xl bg-white border border-borderWarm shadow-sm flex flex-col gap-3">
                   <div class="flex items-start justify-between gap-3">
                     <div class="min-w-0">
-                      <div class="text-[10px] uppercase tracking-wider font-semibold text-gold">${escapeHtml(product.brand)}</div>
+                      <div class="text-[10px] uppercase tracking-wider font-semibold text-gold">${escapeHtml(product.brand || "Оригинал")}</div>
                       <div class="font-serif text-base font-semibold text-graphite leading-snug">${escapeHtml(product.name)}</div>
                       <p class="text-xs text-graphite/65 mt-1 line-clamp-2">${escapeHtml(product.notes || product.description)}</p>
                     </div>

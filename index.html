@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#FAF8F5" />
   <title>СайфуЛлах парфюм — Брендовые флаконы и распив</title>
-  <meta name="description" content="Оригинальная брендовая парфюмерия, распив 10 / 30 / 50 мл и премиальные флаконы. Быстрая доставка по ЧР, Грозному и всей РФ." />
+  <meta name="description" content="Оригинальная брендовая парфюмерия и распив 5 / 10 / 20 / 30 мл. Быстрая доставка по ЧР, Грозному и всей РФ." />
 
   <!-- Google Fonts: Playfair Display (заголовки) и Inter (основной текст) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -182,7 +182,7 @@
         </h1>
 
         <p class="mt-2.5 text-sm sm:text-base text-graphite/75 leading-relaxed">
-          Оригиналы в целых флаконах и удобный распив <span class="font-medium text-graphite">10 / 30 / 50 мл</span>. Быстрое оформление заказа в одно сообщение WhatsApp — доставим маршруткой по ЧР, по Грозному, Ozon или СДЭК.
+          Оригиналы в целых флаконах и удобный распив <span id="hero-volumes-list" class="font-medium text-graphite">5 / 10 / 20 / 30 мл</span>. Быстрое оформление заказа в одно сообщение WhatsApp — доставим маршруткой по ЧР, по Грозному, Ozon или СДЭК.
         </p>
 
         <!-- Кнопка запуска квиза и преимущества -->
@@ -216,50 +216,10 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- 3. КАТАЛОГ С ДВУМЯ КРУПНЫМИ ВКЛАДКАМИ И ФИЛЬТРАМИ                     -->
+  <!-- 3. КАТАЛОГ ПАРФЮМА И ФИЛЬТРЫ                                          -->
   <!-- ===================================================================== -->
   <main id="catalog" class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 pb-16">
-    <!-- Две крупные вкладки сверху -->
-    <div class="grid grid-cols-2 gap-2 p-1.5 rounded-2xl bg-white border border-borderWarm shadow-sm mb-5" role="tablist" aria-label="Разделы каталога">
-      <button id="tab-perfume"
-              type="button"
-              role="tab"
-              aria-selected="true"
-              onclick="switchCatalogTab('Парфюм')"
-              class="flex items-center justify-center gap-2 py-3 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all bg-emeraldDark text-white shadow-sm">
-        <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="9" y="3" width="6" height="3" rx="0.8"></rect>
-          <rect x="6" y="8" width="12" height="13" rx="2.5"></rect>
-        </svg>
-        <span>Парфюм</span>
-      </button>
-
-      <button id="tab-bottle"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              onclick="switchCatalogTab('Флакон')"
-              class="flex items-center justify-center gap-2 py-3 px-3 rounded-xl text-sm sm:text-base font-semibold transition-all text-graphite/75 hover:text-graphite hover:bg-cream">
-        <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M10 2h4"></path>
-          <path d="M12 2v3"></path>
-          <rect x="8" y="5" width="8" height="3" rx="1"></rect>
-          <path d="M7 8h10l1 12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L7 8Z"></path>
-        </svg>
-        <span class="truncate">Флаконы на распив <span class="hidden sm:inline font-normal opacity-85">(10 / 30 / 50 мл)</span></span>
-      </button>
-    </div>
-
-    <!-- Подзаголовок вкладки флаконов (виден только на вкладке «Флакон») -->
-    <div id="bottle-tab-intro" class="hidden mb-5 p-4 rounded-2xl bg-white border border-borderWarm flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-      <div>
-        <h2 class="font-serif text-lg sm:text-xl font-semibold text-graphite">Флаконы на распив (10 / 30 / 50 мл)</h2>
-        <p class="text-xs sm:text-sm text-graphite/65 mt-0.5">Стеклянные атомайзеры, флаконы с деревянной крышкой и подарочные кофры — можно добавить к заказу отдельно.</p>
-      </div>
-      <span id="bottle-count-badge" class="self-start sm:self-center text-xs font-medium px-3 py-1 rounded-full bg-goldSoft text-gold border border-gold/20 whitespace-nowrap"></span>
-    </div>
-
-    <!-- Панель поиска и фильтров (видна на вкладке «Парфюм») -->
+    <!-- Панель поиска и фильтров -->
     <div id="perfume-filters-wrap" class="space-y-3 mb-6">
       <!-- Поиск -->
       <div class="relative">
@@ -334,7 +294,7 @@
             СайфуЛлах парфюм
           </div>
           <p class="text-sm text-graphite/65 mt-1">
-            Оригинальные брендовые флаконы, распив 10 / 30 / 50 мл и атомайзеры.
+            Оригинальные брендовые флаконы и распив <span id="footer-volumes-list">5 / 10 / 20 / 30 мл</span>.
           </p>
           <p class="text-xs text-graphite/50 mt-2">
             Отправка по ЧР (маршруткой), доставка по Грозному, Ozon, СДЭК и самовывоз.
@@ -473,7 +433,7 @@
             </svg>
           </div>
           <h3 class="font-serif text-lg font-semibold text-graphite">Корзина пока пуста</h3>
-          <p class="text-sm text-graphite/65 mt-1 max-w-xs mx-auto">Выберите любимый аромат или флакон под распив — оформим заказ за минуту.</p>
+          <p class="text-sm text-graphite/65 mt-1 max-w-xs mx-auto">Выберите любимый аромат — оформим заказ за минуту.</p>
           <button type="button"
                   onclick="closeCartDrawer()"
                   class="mt-5 px-6 py-3 rounded-xl bg-emeraldDark text-white text-sm font-semibold hover:bg-emeraldHover transition-colors">
@@ -645,7 +605,7 @@
 
 
     /* =======================================================================
-       2. ВСТРОЕННЫЕ ДЕМО-ТОВАРЫ (6 ПАРФЮМОВ + 3 ФЛАКОНА ПОД РАСПИВ)
+       2. ВСТРОЕННЫЕ ДЕМО-ТОВАРЫ (6 ПОПУЛЯРНЫХ АРОМАТОВ)
        Используются по умолчанию, если GOOGLE_SHEET_CSV_URL пустая или недоступна
        ======================================================================= */
     const DEMO_PRODUCTS = [
@@ -759,59 +719,6 @@
         ],
         stockStatus: "available",
         sortOrder: 5
-      },
-
-      // --- ФЛАКОНЫ НА РАСПИВ (3 примера) ---
-      {
-        id: "demo-bottle-1",
-        type: "Флакон",
-        name: "Атомайзер Премиум стекло",
-        brand: "",
-        gender: "Унисекс",
-        family: "",
-        notes: "Толстое прозрачное стекло, мелкодисперсный металлический распылитель",
-        description: "Универсальный флакон с качественным золотистым или серебристым спреем. Герметичный и удобный для повседневного ношения.",
-        photo: "",
-        volumes: [
-          { key: "10ml", label: "10 мл", price: 150, photo: "", mlNumber: 10 },
-          { key: "30ml", label: "30 мл", price: 250, photo: "", mlNumber: 30 },
-          { key: "50ml", label: "50 мл", price: 350, photo: "", mlNumber: 50 }
-        ],
-        stockStatus: "available",
-        sortOrder: 6
-      },
-      {
-        id: "demo-bottle-2",
-        type: "Флакон",
-        name: "Флакон с деревянной крышкой",
-        brand: "Коллекционная серия",
-        gender: "Унисекс",
-        family: "",
-        notes: "Массивное стекло, крышка из натурального дерева, люксовый распылитель",
-        description: "Стильный флакон в эстетике нишевой парфюмерии. Прекрасно смотрится на полке и идеально подходит для подарка.",
-        photo: "",
-        volumes: [
-          { key: "30ml", label: "30 мл", price: 450, photo: "", mlNumber: 30 },
-          { key: "50ml", label: "50 мл", price: 590, photo: "", mlNumber: 50 }
-        ],
-        stockStatus: "available",
-        sortOrder: 7
-      },
-      {
-        id: "demo-bottle-3",
-        type: "Флакон",
-        name: "Подарочный металлический кофр",
-        brand: "Travel Edition",
-        gender: "Унисекс",
-        family: "",
-        notes: "Ударопрочный алюминиевый корпус, выдвижной поворотный механизм, колба 10 мл",
-        description: "Компактный металлический футляр с защитой от протеканий. Легко помещается в карман, сумку или бардачок автомобиля.",
-        photo: "",
-        volumes: [
-          { key: "10ml", label: "10 мл", price: 490, photo: "", mlNumber: 10 }
-        ],
-        stockStatus: "available",
-        sortOrder: 8
       }
     ];
 
@@ -876,7 +783,7 @@
     // Глобальное состояние
     const state = {
       products: [],
-      activeTab: "Парфюм", // "Парфюм" или "Флакон"
+      decantVolumesText: "5 / 10 / 20 / 30 мл",
       searchQuery: "",
       selectedGender: "Все",
       selectedFamily: "Все",
@@ -1313,6 +1220,39 @@
     }
 
     /**
+     * Формирует строку объёмов распива из найденных колонок «Цена_*мл» от меньшего к большему
+     * Например: [5, 10, 20, 30] -> "5 / 10 / 20 / 30 мл"
+     */
+    function formatDecantVolumesSummary(volumeCols) {
+      if (!Array.isArray(volumeCols) || volumeCols.length === 0) return "";
+
+      const mlCols = volumeCols.filter(col =>
+        Number.isFinite(col.mlNumber) && col.mlNumber !== Number.MAX_SAFE_INTEGER
+      );
+
+      if (mlCols.length > 0) {
+        const uniqueNums = [...new Set(mlCols.map(col => col.mlNumber))].sort((a, b) => a - b);
+        return `${uniqueNums.join(" / ")} мл`;
+      }
+
+      return volumeCols.map(col => col.label).filter(Boolean).join(" / ");
+    }
+
+    /**
+     * Обновляет перечень объёмов распива в верхнем описании и подвале сайта
+     */
+    function updateVolumesDescription(summaryText) {
+      if (!summaryText) return;
+      state.decantVolumesText = summaryText;
+
+      const heroVolumesEl = document.getElementById("hero-volumes-list");
+      const footerVolumesEl = document.getElementById("footer-volumes-list");
+
+      if (heroVolumesEl) heroVolumesEl.textContent = summaryText;
+      if (footerVolumesEl) footerVolumesEl.textContent = summaryText;
+    }
+
+    /**
      * Преобразует строки CSV в массив товаров магазина.
      * Автоматически подхватывает любые колонки «Цена_Xмл» / «Фото_Xмл»
      * и ставит целый флакон («Цена_флакон») последним.
@@ -1326,8 +1266,12 @@
         String(h || "").trim().toLowerCase().replace(/ё/g, "е").replace(/\s+/g, "_")
       );
 
-      // Находим все динамические колонки объёмов (5мл, 10мл, 15мл, 30мл, 50мл, 100мл и любые новые)
+      // Находим все динамические колонки объёмов (5мл, 10мл, 15мл, 20мл, 30мл и любые новые)
       const dynamicVolumeCols = extractDynamicVolumeColumns(headers);
+      const decantVolumesSummary = formatDecantVolumesSummary(dynamicVolumeCols);
+      if (decantVolumesSummary) {
+        updateVolumesDescription(decantVolumesSummary);
+      }
 
       const getCell = (row, ...names) => {
         for (const name of names) {
@@ -1469,47 +1413,6 @@
        ======================================================================= */
 
     /**
-     * Переключение главных вкладок: «Парфюм» / «Флакон»
-     */
-    function switchCatalogTab(tabType) {
-      state.activeTab = tabType;
-
-      const tabPerfume = document.getElementById("tab-perfume");
-      const tabBottle = document.getElementById("tab-bottle");
-      const perfumeFilters = document.getElementById("perfume-filters-wrap");
-      const bottleIntro = document.getElementById("bottle-tab-intro");
-
-      const activeClasses = ["bg-emeraldDark", "text-white", "shadow-sm"];
-      const inactiveClasses = ["text-graphite/75", "hover:text-graphite", "hover:bg-cream"];
-
-      if (tabType === "Парфюм") {
-        tabPerfume.classList.add(...activeClasses);
-        tabPerfume.classList.remove(...inactiveClasses);
-        tabPerfume.setAttribute("aria-selected", "true");
-
-        tabBottle.classList.remove(...activeClasses);
-        tabBottle.classList.add(...inactiveClasses);
-        tabBottle.setAttribute("aria-selected", "false");
-
-        perfumeFilters.classList.remove("hidden");
-        bottleIntro.classList.add("hidden");
-      } else {
-        tabBottle.classList.add(...activeClasses);
-        tabBottle.classList.remove(...inactiveClasses);
-        tabBottle.setAttribute("aria-selected", "true");
-
-        tabPerfume.classList.remove(...activeClasses);
-        tabPerfume.classList.add(...inactiveClasses);
-        tabPerfume.setAttribute("aria-selected", "false");
-
-        perfumeFilters.classList.add("hidden");
-        bottleIntro.classList.remove("hidden");
-      }
-
-      renderCatalog();
-    }
-
-    /**
      * Рендер кнопок-фильтров по полу и семейству
      */
     function renderFilterPills() {
@@ -1583,30 +1486,28 @@
     }
 
     /**
-     * Возвращает отфильтрованные и отсортированные товары для текущей вкладки:
+     * Возвращает отфильтрованный и отсортированный каталог парфюма:
      * сначала «В наличии», затем «Скоро в наличии», затем «Нет в наличии»
      */
     function getFilteredProducts() {
       const query = state.searchQuery.trim().toLowerCase();
 
       const filtered = state.products.filter(product => {
-        if (product.type !== state.activeTab) return false;
+        if (product.type !== "Парфюм") return false;
 
-        if (state.activeTab === "Парфюм") {
-          if (state.selectedGender !== "Все") {
-            const pGender = (product.gender || "").toLowerCase();
-            if (pGender !== state.selectedGender.toLowerCase()) return false;
-          }
+        if (state.selectedGender !== "Все") {
+          const pGender = (product.gender || "").toLowerCase();
+          if (pGender !== state.selectedGender.toLowerCase()) return false;
+        }
 
-          if (state.selectedFamily !== "Все") {
-            const pFamily = (product.family || "").toLowerCase();
-            if (pFamily !== state.selectedFamily.toLowerCase()) return false;
-          }
+        if (state.selectedFamily !== "Все") {
+          const pFamily = (product.family || "").toLowerCase();
+          if (pFamily !== state.selectedFamily.toLowerCase()) return false;
+        }
 
-          if (query) {
-            const haystack = `${product.name} ${product.brand} ${product.notes} ${product.description} ${product.family}`.toLowerCase();
-            if (!haystack.includes(query)) return false;
-          }
+        if (query) {
+          const haystack = `${product.name} ${product.brand} ${product.notes} ${product.description} ${product.family}`.toLowerCase();
+          if (!haystack.includes(query)) return false;
         }
 
         return true;
@@ -1743,23 +1644,13 @@
       const emptyState = document.getElementById("empty-catalog-state");
       const countEl = document.getElementById("catalog-results-count");
       const resetBtn = document.getElementById("reset-filters-btn");
-      const bottleBadge = document.getElementById("bottle-count-badge");
 
       const items = getFilteredProducts();
-      const availableCount = items.filter(p => p.stockStatus === "available").length;
 
-      // Обновляем счётчики и кнопку сброса фильтров
-      if (state.activeTab === "Парфюм") {
-        const hasFilters = state.searchQuery.trim() !== "" || state.selectedGender !== "Все" || state.selectedFamily !== "Все";
-        if (countEl) countEl.textContent = `Найдено ароматов: ${items.length}`;
-        if (resetBtn) resetBtn.classList.toggle("hidden", !hasFilters);
-      } else {
-        if (bottleBadge) {
-          bottleBadge.textContent = availableCount === items.length
-            ? `В наличии: ${items.length}`
-            : `В наличии: ${availableCount} из ${items.length}`;
-        }
-      }
+      // Обновляем счётчик найденных ароматов и кнопку сброса фильтров
+      const hasFilters = state.searchQuery.trim() !== "" || state.selectedGender !== "Все" || state.selectedFamily !== "Все";
+      if (countEl) countEl.textContent = `Найдено ароматов: ${items.length}`;
+      if (resetBtn) resetBtn.classList.toggle("hidden", !hasFilters);
 
       if (items.length === 0) {
         grid.innerHTML = "";

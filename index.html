@@ -930,31 +930,72 @@
     }
 
     /**
-     * Преобразует ссылки Google Диска в рабочую прямую ссылку для <img>.
-     * Поддерживает форматы:
-     * - https://drive.google.com/file/d/FILE_ID/view?usp=sharing
-     * - https://drive.google.com/open?id=FILE_ID
-     * - https://drive.google.com/uc?export=view&id=FILE_ID
+     * Извлекает ID файла из любых ссылок Google (docs.google.com/images/d/ID/edit,
+     * drive.google.com/file/d/ID/view, drive.google.com/open?id=ID, uc?id=ID и т.д.).
+     * Для обычных прямых ссылок не с Google возвращает пустую строку.
+     */
+    function extractGoogleFileId(url) {
+      if (!url || typeof url !== "string") return "";
+      const trimmed = url.trim();
+      if (!trimmed) return "";
+
+      // Обычные прямые ссылки на картинки не с Google оставляем без изменений
+      const isGoogleLink = /(?:google\.com|googleusercontent\.com)/i.test(trimmed);
+      if (!isGoogleLink) return "";
+
+      const pathMatch = trimmed.match(/\/d\/([a-zA-Z0-9_-]{15,})/);
+      if (pathMatch && pathMatch[1]) {
+        return pathMatch[1];
+      }
+
+      const queryMatch = trimmed.match(/[?&]id=([a-zA-Z0-9_-]{15,})/);
+      if (queryMatch && queryMatch[1]) {
+        return queryMatch[1];
+      }
+
+      return "";
+    }
+
+    /**
+     * Универсальная функция обработки ссылок на фото (для «Фото», «Фото_флакона» и всех «Фото_*мл»).
+     * Преобразует любые ссылки Google в рабочую ссылку миниатюры высокого разрешения,
+     * а сторонние прямые URL возвращает без изменений.
      */
     function normalizeImageUrl(url) {
       if (!url || typeof url !== "string") return "";
       const trimmed = url.trim();
       if (!trimmed) return "";
 
-      if (trimmed.includes("drive.google.com")) {
-        // Формат /file/d/ID/...
-        const fileMatch = trimmed.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-        if (fileMatch && fileMatch[1]) {
-          return `https://lh3.googleusercontent.com/d/${fileMatch[1]}`;
-        }
-        // Формат ?id=ID или &id=ID
-        const idMatch = trimmed.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-        if (idMatch && idMatch[1]) {
-          return `https://lh3.googleusercontent.com/d/${idMatch[1]}`;
-        }
+      const fileId = extractGoogleFileId(trimmed);
+      if (fileId) {
+        return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
       }
 
       return trimmed;
+    }
+
+    /**
+     * Двухступенчатый обработчик ошибки загрузки изображения товара (onerror):
+     * 1) Если это файл Google и запасной вариант ещё не пробовался — пробует https://lh3.googleusercontent.com/d/ID;
+     * 2) Если запасная ссылка тоже не загрузилась — скрывает <img> и показывает стандартную SVG-заглушку.
+     */
+    function handleProductImageError(imgEl) {
+      if (!imgEl) return;
+
+      const fallbackSrc = imgEl.getAttribute("data-fallback-src") || "";
+      const fallbackTried = imgEl.getAttribute("data-fallback-tried") === "1";
+
+      if (fallbackSrc && !fallbackTried) {
+        imgEl.setAttribute("data-fallback-tried", "1");
+        imgEl.src = fallbackSrc;
+        return;
+      }
+
+      imgEl.onerror = null;
+      imgEl.style.display = "none";
+      if (imgEl.nextElementSibling) {
+        imgEl.nextElementSibling.classList.remove("hidden");
+      }
     }
 
     /**
@@ -1590,10 +1631,11 @@
     }
 
     /**
-     * Возвращает HTML медиа-области карточки (фото с fallback на SVG-флакон)
+     * Возвращает HTML медиа-области карточки (фото с referrerpolicy="no-referrer",
+     * запасной загрузкой через lh3.googleusercontent.com/d/ID и fallback на SVG-флакон)
      */
     function buildProductMediaHTML(product, volume) {
-      const photoUrl = getEffectivePhotoUrl(product, volume);
+      const photoUrl = normalizeImageUrl(getEffectivePhotoUrl(product, volume));
       const fallbackHtml = createBottlePlaceholderHTML(product, volume);
       const altVolumePart = volume && volume.label ? ` (${volume.label})` : "";
 
@@ -1601,13 +1643,18 @@
         return `<div class="w-full h-full img-fade">${fallbackHtml}</div>`;
       }
 
+      const googleFileId = extractGoogleFileId(photoUrl);
+      const fallbackSrc = googleFileId ? `https://lh3.googleusercontent.com/d/${googleFileId}` : "";
+
       return `
         <div class="relative w-full h-full bg-[#F5F1EB] img-fade">
           <img src="${escapeHtml(photoUrl)}"
+               ${fallbackSrc ? `data-fallback-src="${escapeHtml(fallbackSrc)}"` : ""}
+               referrerpolicy="no-referrer"
                alt="${escapeHtml(product.brand)} ${escapeHtml(product.name)}${escapeHtml(altVolumePart)}"
                loading="lazy"
                class="w-full h-full object-cover img-fade"
-               onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+               onerror="handleProductImageError(this)" />
           <div class="hidden w-full h-full">${fallbackHtml}</div>
         </div>
       `;
